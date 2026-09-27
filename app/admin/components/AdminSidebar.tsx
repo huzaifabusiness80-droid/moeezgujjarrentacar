@@ -12,8 +12,10 @@ import {
   MessageSquare,
   LogOut,
   Globe,
-  PlusCircle,
   X,
+  Moon,
+  Building2,
+  ShieldCheck,
 } from "lucide-react";
 
 interface AdminSidebarProps {
@@ -52,14 +54,34 @@ export default function AdminSidebar({
       badge: "Live",
     },
     {
+      title: "Visa Processing",
+      href: "/admin/visas",
+      icon: FileCheck2,
+    },
+    {
       title: "Tour Packages",
       href: "/admin/packages",
       icon: Plane,
     },
     {
-      title: "Visas & Sub-Services",
-      href: "/admin/sub-services",
-      icon: FileCheck2,
+      title: "Flight Bookings",
+      href: "/admin/flights",
+      icon: Plane,
+    },
+    {
+      title: "Umrah & Hajj",
+      href: "/admin/umrah",
+      icon: Moon,
+    },
+    {
+      title: "Hotel Bookings",
+      href: "/admin/hotels",
+      icon: Building2,
+    },
+    {
+      title: "Travel Insurance",
+      href: "/admin/insurance",
+      icon: ShieldCheck,
     },
     {
       title: "Destinations",
@@ -74,22 +96,22 @@ export default function AdminSidebar({
   ];
 
   const sidebarContent = (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full bg-[#ebf4fa] text-slate-800">
       {/* Brand Header */}
-      <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between">
+      <div className="p-4 sm:p-5 border-b border-[#cee4f5] bg-[#dceefa] flex items-center justify-between">
         <Link
           href="/admin"
           onClick={onClose}
-          className="flex items-center space-x-2"
+          className="flex items-center space-x-2.5"
         >
-          <div className="w-8 h-8 bg-[#00a8e8] flex items-center justify-center font-black text-white text-base tracking-wider shadow-sm">
+          <div className="w-8 h-8 bg-[#00a8e8] flex items-center justify-center font-black text-white text-base tracking-wider shadow-xs rounded-xs">
             FS
           </div>
           <div>
-            <h1 className="text-sm font-black uppercase tracking-wider text-white leading-tight">
+            <h1 className="text-sm font-black uppercase tracking-wider text-[#0b3663] leading-tight">
               Fly Sky Admin
             </h1>
-            <p className="text-[10px] text-[#00a8e8] font-mono uppercase tracking-widest">
+            <p className="text-[10px] text-[#008bbd] font-mono uppercase tracking-widest font-bold">
               Control Portal
             </p>
           </div>
@@ -97,16 +119,16 @@ export default function AdminSidebar({
         {/* Mobile Close Button */}
         <button
           onClick={onClose}
-          className="lg:hidden p-1.5 text-slate-300 hover:text-white hover:bg-white/10 rounded transition-colors"
+          className="lg:hidden p-1.5 text-slate-600 hover:text-slate-900 hover:bg-white/60 rounded transition-colors"
           aria-label="Close menu"
         >
           <X className="w-5 h-5" />
         </button>
       </div>
 
-      {/* Navigation */}
+      {/* Navigation Menu */}
       <nav className="p-3 space-y-1 flex-1 overflow-y-auto">
-        <p className="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+        <p className="px-3 pt-2 pb-1.5 text-[10px] font-bold uppercase tracking-widest text-[#008bbd]">
           Management
         </p>
 
@@ -114,69 +136,51 @@ export default function AdminSidebar({
           const Icon = item.icon;
           const isActive = item.exact
             ? pathname === item.href
-            : pathname.startsWith(item.href);
+            : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
           return (
             <Link
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className={`flex items-center justify-between px-3 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all rounded-sm ${
+              className={`flex items-center justify-between px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-all rounded-xs ${
                 isActive
-                  ? "bg-[#00a8e8] text-white shadow-sm"
-                  : "text-slate-300 hover:bg-white/10 hover:text-white"
+                  ? "bg-[#00a8e8] text-white shadow-xs"
+                  : "text-slate-700 hover:bg-[#d8edfa] hover:text-[#0b3663]"
               }`}
             >
               <div className="flex items-center space-x-2.5">
-                <Icon className="w-4 h-4 flex-shrink-0" />
+                <Icon
+                  className={`w-4 h-4 flex-shrink-0 ${
+                    isActive ? "text-white" : "text-[#008bbd]"
+                  }`}
+                />
                 <span className="truncate">{item.title}</span>
               </div>
               {item.badge && (
-                <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.5 font-black uppercase tracking-wider animate-pulse flex-shrink-0 ml-2">
+                <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.5 font-black uppercase tracking-wider animate-pulse flex-shrink-0 ml-2 rounded-xs">
                   {item.badge}
                 </span>
               )}
             </Link>
           );
         })}
-
-        <div className="pt-4">
-          <p className="px-3 pt-2 pb-1 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-            Quick Actions
-          </p>
-          <Link
-            href="/admin/packages?action=new"
-            onClick={onClose}
-            className="flex items-center space-x-2 px-3 py-2.5 text-xs text-slate-300 hover:text-white hover:bg-white/5 transition-colors rounded-sm"
-          >
-            <PlusCircle className="w-3.5 h-3.5 text-[#00a8e8] flex-shrink-0" />
-            <span className="truncate">Add Tour Package</span>
-          </Link>
-          <Link
-            href="/admin/sub-services?action=new"
-            onClick={onClose}
-            className="flex items-center space-x-2 px-3 py-2.5 text-xs text-slate-300 hover:text-white hover:bg-white/5 transition-colors rounded-sm"
-          >
-            <PlusCircle className="w-3.5 h-3.5 text-[#00a8e8] flex-shrink-0" />
-            <span className="truncate">Add Visa / Country</span>
-          </Link>
-        </div>
       </nav>
 
-      {/* Footer / Links */}
-      <div className="p-3 border-t border-white/10 space-y-1">
+      {/* Footer / Logout */}
+      <div className="p-3 border-t border-[#cee4f5] bg-[#e3f1fb] space-y-1">
         <Link
           href="/"
           target="_blank"
           onClick={onClose}
-          className="flex items-center space-x-2 px-3 py-2 text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+          className="flex items-center space-x-2 px-3 py-2 text-xs font-bold text-slate-700 hover:text-[#0b3663] hover:bg-[#d5ebf9] transition-colors rounded-xs"
         >
-          <Globe className="w-4 h-4 text-[#00a8e8] flex-shrink-0" />
+          <Globe className="w-4 h-4 text-[#008bbd] flex-shrink-0" />
           <span className="truncate">View Live Website</span>
         </Link>
         <button
           onClick={handleLogout}
-          className="w-full flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-red-300 hover:bg-red-600 hover:text-white transition-colors text-left rounded-sm"
+          className="w-full flex items-center space-x-2 px-3 py-2 text-xs font-bold uppercase tracking-wider text-red-600 hover:bg-red-500 hover:text-white transition-colors text-left rounded-xs"
         >
           <LogOut className="w-4 h-4 flex-shrink-0" />
           <span>Sign Out</span>
@@ -187,21 +191,19 @@ export default function AdminSidebar({
 
   return (
     <>
-      {/* Desktop Sidebar (hidden on mobile, visible on lg+) */}
-      <aside className="hidden lg:flex w-64 bg-[#0b3663] text-white flex-col min-h-screen border-r border-[#0b3663]/40 flex-shrink-0 sticky top-0 h-screen">
+      {/* Desktop Light Blue Sidebar */}
+      <aside className="hidden lg:flex w-64 bg-[#ebf4fa] text-slate-800 flex-col min-h-screen border-r border-[#cee4f5] flex-shrink-0 sticky top-0 h-screen shadow-2xs">
         {sidebarContent}
       </aside>
 
-      {/* Mobile Off-Canvas Drawer (visible on < lg when open) */}
+      {/* Mobile Off-Canvas Drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden flex">
-          {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity"
             onClick={onClose}
           />
-          {/* Drawer Menu */}
-          <div className="relative w-72 max-w-[85vw] bg-[#0b3663] text-white flex flex-col h-full shadow-2xl z-10 animate-in slide-in-from-left duration-200">
+          <div className="relative w-72 max-w-[85vw] bg-[#ebf4fa] text-slate-800 flex flex-col h-full shadow-2xl z-10 animate-in slide-in-from-left duration-200">
             {sidebarContent}
           </div>
         </div>
@@ -209,4 +211,3 @@ export default function AdminSidebar({
     </>
   );
 }
-

@@ -4,7 +4,7 @@ import React from "react";
 import SubServiceManager from "../components/SubServiceManager";
 import { Plane } from "lucide-react";
 
-export default function AdminPackagesPage() {
+export default function AdminToursPage() {
   return (
     <SubServiceManager
       parentSlug="tour-packages"

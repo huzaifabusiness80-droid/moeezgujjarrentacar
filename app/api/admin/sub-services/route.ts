@@ -89,6 +89,36 @@ export async function POST(request: Request) {
       },
     });
 
+    // If this is a tour package, sync to Package table as well
+    if (parentSlug === "tour-packages") {
+      try {
+        await prisma.package.upsert({
+          where: { slug },
+          update: {
+            title,
+            category: body.subtitle || "Worldwide Tour",
+            duration: body.durationOrProcessing || "5 Days",
+            price: body.priceOrFee || "Call for quote",
+            imageSrc: body.image || "/destinations/dubai.jpg",
+            isSale: body.isFeatured !== undefined ? !!body.isFeatured : true,
+            link: `/services/tour-packages/${slug}`,
+          },
+          create: {
+            slug,
+            title,
+            category: body.subtitle || "Worldwide Tour",
+            duration: body.durationOrProcessing || "5 Days",
+            price: body.priceOrFee || "Call for quote",
+            imageSrc: body.image || "/destinations/dubai.jpg",
+            isSale: body.isFeatured !== undefined ? !!body.isFeatured : true,
+            link: `/services/tour-packages/${slug}`,
+          },
+        });
+      } catch (syncErr) {
+        console.warn("Failed to sync Package model:", syncErr);
+      }
+    }
+
     return NextResponse.json({ success: true, data: created });
   } catch (error: any) {
     console.error("POST /api/admin/sub-services error:", error);
@@ -159,6 +189,36 @@ export async function PUT(request: Request) {
       data: updateData,
     });
 
+    // If this is a tour package, sync to Package table
+    if (updated.parentSlug === "tour-packages") {
+      try {
+        await prisma.package.upsert({
+          where: { slug: updated.slug },
+          update: {
+            title: updated.title,
+            category: updated.subtitle || "Worldwide Tour",
+            duration: updated.durationOrProcessing || "5 Days",
+            price: updated.priceOrFee,
+            imageSrc: updated.image,
+            isSale: updated.isFeatured,
+            link: `/services/tour-packages/${updated.slug}`,
+          },
+          create: {
+            slug: updated.slug,
+            title: updated.title,
+            category: updated.subtitle || "Worldwide Tour",
+            duration: updated.durationOrProcessing || "5 Days",
+            price: updated.priceOrFee,
+            imageSrc: updated.image,
+            isSale: updated.isFeatured,
+            link: `/services/tour-packages/${updated.slug}`,
+          },
+        });
+      } catch (syncErr) {
+        console.warn("Failed to sync Package update:", syncErr);
+      }
+    }
+
     return NextResponse.json({ success: true, data: updated });
   } catch (error: any) {
     console.error("PUT /api/admin/sub-services error:", error);
@@ -189,9 +249,26 @@ export async function DELETE(request: Request) {
       );
     }
 
-    await prisma.subService.delete({
+    const existing = await prisma.subService.findUnique({
       where: { id },
     });
+
+    if (existing) {
+      await prisma.subService.delete({
+        where: { id },
+      });
+
+      // If tour package, also cleanup package table if slug matches
+      if (existing.parentSlug === "tour-packages") {
+        try {
+          await prisma.package.deleteMany({
+            where: { slug: existing.slug },
+          });
+        } catch (pkgErr) {
+          console.warn("Failed to delete corresponding Package:", pkgErr);
+        }
+      }
+    }
 
     return NextResponse.json({ success: true, message: "SubService deleted successfully" });
   } catch (error: any) {

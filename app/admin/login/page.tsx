@@ -7,8 +7,8 @@ import Link from "next/link";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("Mueezgujjar85@gmail.com");
-  const [password, setPassword] = useState("Admin@FlySky2026!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -80,7 +80,7 @@ export default function AdminLoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="block w-full pl-10 pr-3 py-2.5 text-sm border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-slate-50 focus:bg-white transition-colors"
-                  placeholder="Mueezgujjar85@gmail.com"
+                  placeholder="Enter your email"
                 />
               </div>
             </div>
@@ -104,13 +104,6 @@ export default function AdminLoginPage() {
               </div>
             </div>
 
-            <div className="p-3 bg-slate-50 border border-slate-200 text-xs text-slate-600 rounded-lg">
-              <span className="font-semibold text-slate-800">Default Credentials:</span>
-              <div className="mt-1 font-mono text-xs space-y-0.5 text-slate-500">
-                <div>Email: <span className="font-medium text-slate-900">Mueezgujjar85@gmail.com</span></div>
-                <div>Pass: <span className="font-medium text-slate-900">Admin@RentACar2026!</span></div>
-              </div>
-            </div>
 
             <div>
               <button

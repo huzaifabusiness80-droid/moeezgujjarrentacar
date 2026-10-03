@@ -175,15 +175,14 @@ export default function AboutPage() {
                 The professionals behind your seamless rental experience.
               </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 max-w-6xl mx-auto">
               {[
-                { name: "Moeez Gujjar", role: "CEO & Founder", img: "/navbarlogo.png", isLogo: true },
+                { name: "Moeez Gujjar", role: "CEO & Founder", img: "/Team-images/moeez.png", isLogo: false },
                 { name: "Abdullah", role: "Professional Driver", img: "/Team-images/DriverAbdullah.png", isLogo: false },
                 { name: "Ali Malik", role: "Professional Driver", img: "/Team-images/AliMalikdriver.png", isLogo: false },
-                { name: "Usman Shah", role: "Customer Support", img: "/navbarlogo.png", isLogo: true },
               ].map((member, idx) => (
                 <div key={idx} className="bg-white border border-slate-200 overflow-hidden text-center hover:shadow-lg transition-shadow group">
-                  <div className="relative w-full aspect-square bg-slate-100 overflow-hidden">
+                  <div className="relative w-full aspect-[3/4] bg-slate-100 overflow-hidden">
                     <Image
                       src={member.img}
                       alt={member.name}

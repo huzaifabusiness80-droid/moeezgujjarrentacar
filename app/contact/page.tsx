@@ -1,202 +1,163 @@
-import Link from "next/link";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ContactPageForm from "./ContactPageForm";
 import { 
-  Award, 
-  ChevronRight, 
-  Phone, 
   MapPin, 
-  Clock, 
-  MessageSquare, 
+  Phone, 
   Mail, 
-  ShieldCheck,
-  Building2
+  Clock, 
+  ChevronRight,
+  MessageSquare,
+  AlertCircle
 } from "lucide-react";
+import Link from "next/link";
 
 export const metadata = {
-  title: "Contact Us | Fly Sky Travel & Tourism",
-  description: "Contact Fly Sky Travel & Tourism in Vehari, Punjab. Call 0300-1871622, WhatsApp, or visit Office No 1, F-Block, Freed Joyland Road, Vehari for licensed visa and travel services.",
+  title: "Contact Us | Moeez Gujjar Rent A Car Lahore",
+  description: "Contact Moeez Gujjar Rent A Car in Lahore. Rent luxury cars, SUVs, and economy sedans at the best rates. Get a quick quote today.",
+  keywords: ["Contact Rent a car Lahore", "Rent a car number Lahore", "Car rental Lahore contact", "Book rent a car Lahore"],
+  openGraph: {
+    title: "Contact Us | Moeez Gujjar Rent A Car Lahore",
+    description: "Get in touch with Moeez Gujjar Rent A Car in Lahore for premium rental services. 24/7 Support.",
+    url: "https://moeezgujjarrentacar.com/contact",
+  }
 };
 
 export default function ContactPage() {
-  const contactCards = [
-    {
-      icon: <Phone className="w-5 h-5 text-[#00a8e8]" />,
-      title: "Helpline Numbers",
-      line1: "0300-1871622",
-      line2: "0308-8171622 | 0370-4171622",
-      actionText: "Call Now",
-      actionHref: "tel:03001871622",
-    },
-    {
-      icon: <MessageSquare className="w-5 h-5 text-[#25D366]" />,
-      title: "WhatsApp Desk",
-      line1: "0300-1871622 (24/7 Available)",
-      line2: "Instant Quotes & Document Auditing",
-      actionText: "Chat On WhatsApp",
-      actionHref: "https://wa.me/923001871622",
-    },
-    {
-      icon: <MapPin className="w-5 h-5 text-[#e61c24]" />,
-      title: "Head Office Location",
-      line1: "Office No 1, F-Block",
-      line2: "Freed Joyland Road, Vehari, Punjab",
-      actionText: "View on Map",
-      actionHref: "#map",
-    },
-    {
-      icon: <Clock className="w-5 h-5 text-[#00a8e8]" />,
-      title: "Working Hours",
-      line1: "Mon – Sat: 9:00 AM – 8:00 PM",
-      line2: "Sunday: On Prior Appointment",
-      actionText: "Book Appointment",
-      actionHref: "https://wa.me/923001871622?text=Assalam-o-Alaikum!%20I%20want%20to%20book%20an%20office%20appointment.",
-    },
-  ];
-
   return (
     <div className="min-h-screen flex flex-col bg-white antialiased font-sans">
       <Header />
 
-      <main className="flex-1">
-        {/* Hero Section */}
-        <section className="bg-[#0b3663] text-white py-14 sm:py-20 border-b border-slate-200">
+      <main className="flex-1 w-full bg-slate-50">
+        
+        {/* Compact Page Header */}
+        <section className="bg-[#991b1b] text-white py-10 sm:py-14 border-b border-slate-200">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            {/* Breadcrumbs */}
-            <div className="flex items-center gap-2 text-xs font-semibold text-sky-200 uppercase tracking-wider mb-4">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <ChevronRight className="w-3.5 h-3.5" />
-              <span className="text-white">Contact Us</span>
-            </div>
-
-            <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 bg-[#00a8e8] text-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider rounded-none">
-                <Award className="w-4 h-4" />
-                <span>Govt. License # LHR 10981</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-                Contact Fly Sky Travel
-              </h1>
-
-              <p className="text-sky-100 text-sm sm:text-base leading-relaxed max-w-2xl font-normal">
-                Visit our Vehari office or reach out to our licensed consultants via phone or WhatsApp for prompt travel assistance and visa inquiries.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* 4 Direct Contact Cards Grid */}
-        <section className="py-12 bg-slate-50 border-b border-slate-200">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {contactCards.map((card, idx) => (
-                <div 
-                  key={idx}
-                  className="bg-white border border-slate-300 p-6 rounded-none space-y-3 flex flex-col justify-between hover:border-[#00a8e8] transition-colors"
-                >
-                  <div className="space-y-3">
-                    <div className="w-10 h-10 bg-slate-50 border border-slate-200 flex items-center justify-center">
-                      {card.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
-                        {card.title}
-                      </h3>
-                      <p className="text-xs sm:text-sm font-semibold text-slate-800 mt-1">
-                        {card.line1}
-                      </p>
-                      <p className="text-xs text-slate-500 mt-0.5">
-                        {card.line2}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="pt-3 border-t border-slate-100">
-                    <a
-                      href={card.actionHref}
-                      className="text-xs font-bold text-[#00a8e8] hover:text-[#008dbf] flex items-center gap-1 uppercase tracking-wider"
-                    >
-                      <span>{card.actionText}</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </a>
-                  </div>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+              <div className="space-y-4">
+                <div className="flex items-center gap-2 text-xs font-semibold text-sky-200 uppercase tracking-wider">
+                  <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                  <span className="text-white">Contact</span>
                 </div>
-              ))}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
+                  Get In Touch
+                </h1>
+                <p className="text-sky-100 text-sm max-w-xl font-normal leading-relaxed">
+                  Have questions about our rental fleet, corporate rates, or wedding packages? We are here to help you 24/7.
+                </p>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Interactive Split Grid: Map Left + Form Right */}
-        <section id="map" className="py-16 sm:py-24 bg-white border-b border-slate-200">
+        {/* Main Content Area */}
+        <section className="py-12 sm:py-16 lg:py-20">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight">
-                Send Us a Message or Visit
-              </h2>
-              <p className="text-slate-500 text-xs sm:text-sm mt-2 font-normal">
-                Our team responds to all digital inquiries within minutes during office hours.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
               
-              {/* Left Column: Full-Height Clean Map (No text, No overlay, No rounded, No shadows) */}
-              <div className="w-full h-full min-h-[460px] lg:min-h-[560px] border border-slate-300 rounded-none overflow-hidden bg-slate-100">
-                <iframe
-                  title="Fly Sky Travel & Tourism Vehari Office Map"
-                  src="https://maps.google.com/maps?q=30.0436,72.3533+(Fly+Sky+Travel+%26+Tourism,+Vehari)&t=&z=15&ie=UTF8&iwloc=B&output=embed"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, minHeight: "100%", width: "100%", display: "block" }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-
-              {/* Right Column: Sharp Contact Form */}
-              <div className="bg-slate-50 border border-slate-300 p-6 sm:p-8 lg:p-10 rounded-none flex flex-col justify-between">
+              {/* Left Column: Contact Form */}
+              <div className="lg:col-span-7 xl:col-span-8 h-full">
                 <ContactPageForm />
               </div>
 
-            </div>
+              {/* Right Column: Contact Details & Map */}
+              <div className="lg:col-span-5 xl:col-span-4 space-y-8">
+                
+                {/* Contact Info Card */}
+                <div className="bg-white border border-slate-300 p-6 sm:p-8 rounded-none h-full">
+                  <h2 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    <div className="w-1.5 h-6 bg-[#dc2626]"></div>
+                    Contact Moeez Gujjar Rent A Car
+                  </h2>
 
-          </div>
-        </section>
+                  <p className="text-slate-600 text-sm mb-8 leading-relaxed">
+                    Visit our Lahore office or reach out to our representatives via phone or WhatsApp for prompt car rental assistance.
+                  </p>
 
-        {/* Office Visiting Guidelines */}
-        <section className="py-12 bg-slate-50">
-          <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white border border-slate-300 p-6 sm:p-8 rounded-none flex flex-col md:flex-row items-center justify-between gap-6">
-              <div className="space-y-1 text-center md:text-left">
-                <div className="flex items-center justify-center md:justify-start gap-2 text-[#0b3663] text-xs font-bold uppercase tracking-wider">
-                  <Building2 className="w-4 h-4 text-[#00a8e8]" />
-                  <span>Visiting Our Vehari Office</span>
+                  <div className="space-y-6">
+                    {/* Office Location */}
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                        <MapPin className="w-5 h-5 text-[#e61c24]" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-900 mb-1">Head Office</h4>
+                        <p className="text-slate-600 text-sm leading-relaxed">
+                          Ehsan Road, Faiz Bagh, Naulakha Park, Lahore
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Phone Numbers */}
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                        <Phone className="w-5 h-5 text-[#dc2626]" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-900 mb-1">Helpline (24/7)</h4>
+                        <div className="flex flex-col gap-1 text-sm text-slate-600">
+                          <a href="tel:03200494141" className="hover:text-[#dc2626] transition-colors font-semibold">0320-0494141</a>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* WhatsApp */}
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-[#25D366]/10 border border-[#25D366]/20 flex items-center justify-center shrink-0">
+                        <MessageSquare className="w-5 h-5 text-[#25D366]" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-900 mb-1">WhatsApp Chat</h4>
+                        <a 
+                          href="https://wa.me/923200494141" 
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-slate-600 hover:text-[#25D366] text-sm transition-colors font-semibold"
+                        >
+                          +92 320 0494141
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Email */}
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                        <Mail className="w-5 h-5 text-slate-700" />
+                      </div>
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-900 mb-1">Email Support</h4>
+                        <a href="mailto:Mueezgujjar85@gmail.com" className="text-slate-600 hover:text-[#991b1b] text-sm transition-colors">
+                          Mueezgujjar85@gmail.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <hr className="my-8 border-slate-200" />
+
+                  {/* Office Timings */}
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 bg-slate-100 border border-slate-200 flex items-center justify-center shrink-0">
+                      <Clock className="w-5 h-5 text-slate-700" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900 mb-1">Business Hours</h4>
+                      <div className="space-y-1 text-sm text-slate-600">
+                        <p className="flex justify-between gap-4"><span>Monday - Saturday:</span> <span className="font-medium text-slate-900">09:00 AM - 09:00 PM</span></p>
+                        <p className="flex justify-between gap-4"><span>Sunday:</span> <span className="font-medium text-slate-500">Closed (Available on Phone)</span></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-lg sm:text-xl font-bold text-slate-900">
-                  Air-Conditioned Client Consultation Lounge &amp; Free Parking Available
-                </h3>
-                <p className="text-slate-500 text-xs sm:text-sm">
-                  Located conveniently on Freed Joyland Road, F-Block, Vehari with dedicated visa documentation staff.
-                </p>
-              </div>
 
-              <div className="shrink-0 flex items-center gap-3">
-                <a
-                  href="tel:03001871622"
-                  className="px-6 py-3 bg-[#0b3663] hover:bg-[#072545] text-white font-bold text-xs uppercase tracking-wider rounded-none transition-colors"
-                >
-                  Call Reception
-                </a>
               </div>
             </div>
           </div>
         </section>
-      </main>
 
+      </main>
+      
       <Footer />
     </div>
   );

@@ -44,6 +44,7 @@ export interface SubServiceItem {
   badge: string;
   image: string;
   priceOrFee: string;
+  priceUsd?: string;
   durationOrProcessing: string;
   validity: string;
   stayDuration?: string;
@@ -76,12 +77,9 @@ interface ServiceCategory {
 }
 
 const SERVICE_CATEGORIES: ServiceCategory[] = [
-  { slug: "visa-processing", title: "Visa Processing & Consultancy", icon: FileCheck2 },
-  { slug: "tour-packages", title: "Worldwide Tour Packages", icon: Plane },
-  { slug: "air-ticketing", title: "Air Ticketing & Flights", icon: Plane },
-  { slug: "umrah-services", title: "Executive Umrah & Hajj", icon: Moon },
-  { slug: "hotel-bookings", title: "Worldwide & Domestic Hotels", icon: Building2 },
-  { slug: "travel-insurance", title: "Travel Health Insurance", icon: ShieldCheck },
+  { slug: "luxury-cars", title: "Luxury Car Rentals", icon: Sparkles },
+  { slug: "suv-rentals", title: "SUV & 4x4 Rentals", icon: ShieldCheck },
+  { slug: "economy-cars", title: "Economy & Daily Rentals", icon: Check },
 ];
 
 const CATEGORY_DEFAULTS: Record<string, {
@@ -98,195 +96,90 @@ const CATEGORY_DEFAULTS: Record<string, {
   defaultFaqs: FaqItem[];
   defaultImage: string;
 }> = {
-  "visa-processing": {
-    titlePlaceholder: "e.g. Schengen / UK / USA Visit Visa",
-    taglinePlaceholder: "Certified Visa File Preparation & High Approval Advisory",
-    badgeDefault: "High Approval Rate",
-    priceDefault: "PKR 25,000",
-    durationDefault: "15 to 30 Working Days",
-    validityDefault: "Up to 90 Days (Single / Multiple)",
-    overviewDefault: "Complete visa file preparation, embassy cover letter, biometric appointment scheduling, and documentation verification.",
+  "luxury-cars": {
+    titlePlaceholder: "e.g. Mercedes S-Class, Audi A6",
+    taglinePlaceholder: "Premium luxury for weddings & VIP events",
+    badgeDefault: "Luxury",
+    priceDefault: "PKR 35,000 / Day",
+    durationDefault: "Automatic",
+    validityDefault: "Petrol",
+    overviewDefault: "Experience ultimate comfort and prestige with our premium luxury vehicles, perfect for executive travel and special occasions.",
     defaultReqs: [
-      "Original Passport valid for at least 6 months",
-      "CNIC copy & 2 Passport-size photographs (white background)",
-      "Bank Statement (Last 6 months with Account Maintenance Certificate)",
-      "Employment Letter / Salary Slips OR Business NTN & Tax Returns",
-      "FRC (Family Registration Certificate) if travelling with family"
+      "Valid CNIC",
+      "Valid Driving License (if self-drive)",
+      "Security Deposit via cheque or cash"
     ],
     defaultIncs: [
-      "Embassy Form Filing & VFS/Gerry's Appointment Booking",
-      "Customized Day-by-Day Travel Itinerary",
-      "Verifiable Flight Reservation & Hotel Vouchers",
-      "Schengen-Approved €30,000 Travel Health Insurance",
-      "Professional Cover Letter & Sponsorship Auditing"
+      "Leather Seats & Climate Control",
+      "Premium Sound System",
+      "Chauffeur Service (Optional)",
+      "Fully Insured"
     ],
     defaultSteps: [
-      { title: "Step 1: Document Auditing", description: "Audit bank statements, income proof, and travel history to build a strong case." },
-      { title: "Step 2: Appointment & Form Submission", description: "Book biometric submission slot at Embassy / VFS / Gerry's." },
-      { title: "Step 3: Cover Letter & Travel Vouchers", description: "Draft embassy-compliant cover letter and confirmed reservations." },
-      { title: "Step 4: Submission & Visa Collection", description: "Appear for biometrics with the file and collect your approved visa." }
+      { title: "Step 1: Inquiry", description: "Select the car and dates." },
+      { title: "Step 2: Documentation", description: "Provide CNIC and license." },
+      { title: "Step 3: Delivery", description: "Get the car delivered to your location." }
     ],
     defaultFaqs: [
-      { question: "How long does the visa processing take?", answer: "Standard processing takes 15 to 30 working days depending on embassy workload." },
-      { question: "What is the recommended bank balance?", answer: "A healthy closing balance reflecting your legitimate declared income is recommended." }
+      { question: "Is fuel included?", answer: "No, cars are provided with a full tank and must be returned with a full tank." }
     ],
-    defaultImage: "/destinations/paris.jpg"
+    defaultImage: "/fleet/mercedes-s-class.jpg"
   },
-  "tour-packages": {
-    titlePlaceholder: "e.g. Dubai Deluxe Explorer (5 Days / 4 Nights)",
-    taglinePlaceholder: "All-inclusive guided tour with luxury hotels, transfers & sightseeing",
-    badgeDefault: "Best Seller Tour",
-    priceDefault: "PKR 145,000 / Person",
-    durationDefault: "5 Days / 4 Nights",
-    validityDefault: "Year-Round Departures",
-    overviewDefault: "Experience the best of the destination with verified 4-star central accommodation, daily breakfast, airport transfers, and guided sightseeing excursions.",
+  "suv-rentals": {
+    titlePlaceholder: "e.g. Toyota Land Cruiser V8, Prado TX",
+    taglinePlaceholder: "Powerful 4x4 for northern area tours",
+    badgeDefault: "SUV",
+    priceDefault: "PKR 25,000 / Day",
+    durationDefault: "Automatic",
+    validityDefault: "Diesel / Petrol",
+    overviewDefault: "Robust and spacious SUVs designed for family trips, off-roading, and long inter-city travel.",
     defaultReqs: [
-      "Passport copy valid for 6 months",
-      "Valid Tourist Visa (included in package)",
-      "Passport size photographs"
+      "Valid CNIC",
+      "Valid Driving License",
+      "Security Deposit"
     ],
     defaultIncs: [
-      "4 Nights accommodation in 4-Star Central Hotel with Daily Breakfast",
-      "Return Airport Transfers in AC Private/Shared Vehicle",
-      "Guided City Tour with Professional Local Guide",
-      "Major Attraction Entry Tickets Included",
-      "24/7 On-ground Emergency Customer Assistance"
+      "4x4 Drive Mode",
+      "Spacious 7-Seater Capacity",
+      "All-Terrain Tires"
     ],
     defaultSteps: [
-      { title: "Day 1: Arrival & Welcome Dinner", description: "Airport pickup, hotel check-in, and evening welcome cruise / dinner." },
-      { title: "Day 2: Iconic Landmarks City Tour", description: "Guided tour of top attractions, heritage areas, and photography spots." },
-      { title: "Day 3: Scenic Excursion & Adventure", description: "Full-day outdoor excursion with scenic views and entertainment." },
-      { title: "Day 4: Free Day for Shopping / Leisure", description: "Explore local markets, shopping malls, or optional day excursions." },
-      { title: "Day 5: Departure", description: "Breakfast at hotel and transfer to airport for return flight." }
+      { title: "Step 1: Booking", description: "Select dates and destination." },
+      { title: "Step 2: Verification", description: "Submit required documents." },
+      { title: "Step 3: Drive", description: "Enjoy your powerful SUV." }
     ],
     defaultFaqs: [
-      { question: "Are flights and visas included in this tour package?", answer: "We offer both all-inclusive packages (visa + hotel + transfers + tours) and land-only options." },
-      { question: "Can this package be customized for families or couples?", answer: "Yes, all itineraries can be tailored to your preferred dates, hotel level, and private transport." }
+      { question: "Can I take the SUV to Northern Areas?", answer: "Yes, our SUVs are fully maintained and ideal for hilly northern areas." }
     ],
-    defaultImage: "/destinations/dubai.jpg"
+    defaultImage: "/fleet/land-cruiser-v8.jpg"
   },
-  "air-ticketing": {
-    titlePlaceholder: "e.g. International Direct & Connecting Flights",
-    taglinePlaceholder: "Discounted IATA airfares on top world airlines with 24/7 booking support",
-    badgeDefault: "Direct IATA Fares",
-    priceDefault: "Best Market Rates",
-    durationDefault: "Instant Confirmation",
-    validityDefault: "Official E-Ticket with Live PNR",
-    overviewDefault: "Direct booking on Emirates, Qatar Airways, Turkish Airlines, Saudia, PIA, and domestic carriers with instant ticketing, baggage upgrades, and date change flexibility.",
+  "economy-cars": {
+    titlePlaceholder: "e.g. Honda Civic, Toyota Corolla",
+    taglinePlaceholder: "Fuel-efficient sedans for daily errands",
+    badgeDefault: "Economy",
+    priceDefault: "PKR 10,000 / Day",
+    durationDefault: "Automatic / Manual",
+    validityDefault: "Petrol",
+    overviewDefault: "Affordable and reliable cars for everyday use, providing excellent fuel economy and comfort.",
     defaultReqs: [
-      "Passport copy of all passengers",
-      "Destination and preferred travel dates",
-      "Visa copy for destination country"
+      "Valid CNIC",
+      "Valid Driving License",
+      "Security Deposit"
     ],
     defaultIncs: [
-      "Instant official electronic ticket (e-ticket) issuance",
-      "Baggage allowance verification (20kg to 46kg depending on route)",
-      "Advance seat selection & special meal requests",
-      "24/7 flight rescheduling, cancellation & refund assistance"
+      "Air Conditioning",
+      "Excellent Mileage",
+      "Clean Interior"
     ],
     defaultSteps: [
-      { title: "Step 1: Inquire Routes & Dates", description: "Share your departure city, destination, and travel dates." },
-      { title: "Step 2: Compare Airline Rates", description: "We provide top airline options with direct and connecting flight timings." },
-      { title: "Step 3: Instant Ticket Issuance", description: "Confirm booking and receive live airline PNR and e-ticket instantly." }
+      { title: "Step 1: Reserve", description: "Choose your preferred sedan." },
+      { title: "Step 2: Document Check", description: "Provide ID and license." },
+      { title: "Step 3: Pickup", description: "Pick up from our Lahore office or opt for delivery." }
     ],
     defaultFaqs: [
-      { question: "Can I hold a seat before making payment?", answer: "Yes, we can hold confirmed seats for 12 to 24 hours depending on airline ticketing time limit." },
-      { question: "Do you offer student discounts or extra luggage?", answer: "Yes, special student baggage allowances are available on selected partner airlines." }
+      { question: "Is there a mileage limit?", answer: "Yes, standard daily rentals include a 150 KM limit. Additional kilometers are charged extra." }
     ],
-    defaultImage: "/flight_service.jpg"
-  },
-  "umrah-services": {
-    titlePlaceholder: "e.g. 5-Star Luxury VIP Umrah (10 Days)",
-    taglinePlaceholder: "Front-row Haram view hotels, private VIP transfers & Nusuk e-visa",
-    badgeDefault: "5-Star Haram Front",
-    priceDefault: "Starting from PKR 390,000",
-    durationDefault: "10 to 14 Days",
-    validityDefault: "Available Year-Round",
-    overviewDefault: "Complete executive pilgrimage arrangements featuring verified hotels within walking distance of Masjid al-Haram and Masjid an-Nabawi, instant electronic Umrah visas, and VIP transportation.",
-    defaultReqs: [
-      "Original Passport valid for 6 months",
-      "Digital passport photograph with white background",
-      "Vaccination proof as per Saudi regulations"
-    ],
-    defaultIncs: [
-      "Luxury Clock Tower / Haram Front Hotel Stay with Breakfast",
-      "Instant Digital Umrah E-Visa (Nusuk Platform)",
-      "Private VIP GMC Yukon / HiAce Vehicle Transfers",
-      "Haramain High-Speed Train Tickets between Makkah & Madinah",
-      "Historical Ziyarat Tours in Makkah and Madinah with Guide"
-    ],
-    defaultSteps: [
-      { title: "Step 1: Package Selection & Dates", description: "Choose room configuration, departure date, and duration." },
-      { title: "Step 2: Instant E-Visa & Hotel Vouchers", description: "Digital Umrah visa issued within 24-48 hours with hotel confirmation." },
-      { title: "Step 3: Makkah Stay & Umrah Rituals", description: "Perform Umrah with complete peace of mind steps away from the Holy Kaaba." },
-      { title: "Step 4: Madinah Stay & Historical Ziyarat", description: "Prayers in Riyazul Jannah and guided Ziyarat to Mount Uhud & Masjid Quba." }
-    ],
-    defaultFaqs: [
-      { question: "Can females travel for Umrah without a Mahram?", answer: "Yes, under current Saudi regulations, females of all ages can travel for Umrah without a Mahram." },
-      { question: "Are high-speed train tickets included?", answer: "Yes, executive packages include high-speed train tickets between Makkah and Madinah." }
-    ],
-    defaultImage: "/destinations/dubai.jpg"
-  },
-  "hotel-bookings": {
-    titlePlaceholder: "e.g. Worldwide 4-Star & 5-Star Hotel Bookings",
-    taglinePlaceholder: "Corporate negotiated rates on 500,000+ verified hotels worldwide",
-    badgeDefault: "Corporate Discount Rates",
-    priceDefault: "Special B2B Tariffs",
-    durationDefault: "Instant Confirmation Voucher",
-    validityDefault: "Worldwide Properties",
-    overviewDefault: "Verified accommodations across 100+ countries with instant embassy-verifiable vouchers, flexible cancellation, and payment options in Pakistani Rupees (PKR).",
-    defaultReqs: [
-      "Guest name and passport details",
-      "Check-in and check-out dates",
-      "Room category (Single, Double, Twin, Family Suite)"
-    ],
-    defaultIncs: [
-      "Official confirmed hotel voucher with reservation booking code",
-      "Complimentary breakfast & WiFi on selected properties",
-      "Verifiable voucher valid for embassy visa applications",
-      "Flexible date change and pay-in-PKR options"
-    ],
-    defaultSteps: [
-      { title: "Step 1: Share City & Stay Dates", description: "Tell us your destination city, check-in date, and number of guests." },
-      { title: "Step 2: Review Curated Options", description: "Choose from central, highly-rated hotels at discounted corporate rates." },
-      { title: "Step 3: Instant Voucher Delivery", description: "Receive official PDF voucher for visa filing and hotel check-in." }
-    ],
-    defaultFaqs: [
-      { question: "Are these hotel vouchers valid for visa applications?", answer: "Yes, all our hotel reservations are 100% verified and accepted by embassies worldwide." },
-      { question: "Can I pay in PKR for hotels in Europe or USA?", answer: "Yes, you can pay 100% in Pakistani Rupees via bank transfer or at our office." }
-    ],
-    defaultImage: "/destinations/bahrain.jpg"
-  },
-  "travel-insurance": {
-    titlePlaceholder: "e.g. Schengen Embassy Approved Travel Insurance",
-    taglinePlaceholder: "100% embassy compliant travel health insurance with €30,000 / $50,000 medical coverage",
-    badgeDefault: "100% Embassy Compliant",
-    priceDefault: "Starting from PKR 4,500",
-    durationDefault: "Issued in 15 Minutes",
-    validityDefault: "7 Days to 1 Year Multi-Trip",
-    overviewDefault: "Schengen and worldwide embassy-approved travel health insurance policies covering medical emergencies, hospital stays, flight delays, and baggage loss with instant QR-coded verification.",
-    defaultReqs: [
-      "Passport scan and CNIC copy",
-      "Travel start date and return date",
-      "Destination country (Schengen, USA, UK, Worldwide)"
-    ],
-    defaultIncs: [
-      "Emergency Medical Expenses & Hospitalization (Up to €30,000 / $50,000+)",
-      "Medical Repatriation & Evacuation Coverage",
-      "Compensation for Lost Baggage & Flight Delays",
-      "Verifiable QR-coded Digital Policy PDF accepted by all embassies",
-      "24/7 International Emergency Assistance Helpline"
-    ],
-    defaultSteps: [
-      { title: "Step 1: Share Travel Dates", description: "Send your passport scan and departure/return dates via WhatsApp." },
-      { title: "Step 2: Instant Policy Generation", description: "Official policy generated with unique policy number and QR code in 15 minutes." },
-      { title: "Step 3: Submit with Visa File", description: "Print or attach digital PDF for embassy submission and travel protected." }
-    ],
-    defaultFaqs: [
-      { question: "Is this insurance accepted for Schengen visa applications?", answer: "Yes, our policies meet all Schengen Article requirements with minimum €30,000 coverage and zero deductible." },
-      { question: "What happens if my visa is refused?", answer: "Policies can be cancelled and refunded prior to the travel date upon presenting the embassy refusal letter." }
-    ],
-    defaultImage: "/destinations/turkey.jpg"
+    defaultImage: "/fleet/honda-civic-rs.jpg"
   }
 };
 
@@ -348,7 +241,7 @@ export default function SubServiceManager({
   }, [parentSlug]);
 
   const openNewModal = () => {
-    const activeParentSlug = parentSlug !== "ALL" ? parentSlug : "visa-processing";
+    const activeParentSlug = parentSlug !== "ALL" ? parentSlug : "luxury-cars";
     const defaults = CATEGORY_DEFAULTS[activeParentSlug] || CATEGORY_DEFAULTS["visa-processing"];
     const parentCategoryObj = SERVICE_CATEGORIES.find((c) => c.slug === activeParentSlug);
 
@@ -382,7 +275,7 @@ export default function SubServiceManager({
 
   const openEditModal = (item: SubServiceItem) => {
     const raw: any = item;
-    const itemParentSlug = raw.parentSlug || raw.serviceId || (parentSlug !== "ALL" ? parentSlug : "visa-processing");
+    const itemParentSlug = raw.parentSlug || raw.serviceId || (parentSlug !== "ALL" ? parentSlug : "luxury-cars");
     const parentCategoryObj = SERVICE_CATEGORIES.find((c) => c.slug === itemParentSlug);
 
     const mapped: Partial<SubServiceItem> = {
@@ -568,15 +461,15 @@ export default function SubServiceManager({
         {/* Top Summary Banner */}
         <div className="bg-white border border-slate-200 p-4 sm:p-5 shadow-2xs flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-start space-x-3.5">
-            <div className="p-3 bg-[#0b3663] text-white flex-shrink-0 shadow-xs">
-              <HeaderIcon className="w-6 h-6 text-[#00a8e8]" />
+            <div className="p-3 bg-[#991b1b] text-white flex-shrink-0 shadow-xs">
+              <HeaderIcon className="w-6 h-6 text-[#dc2626]" />
             </div>
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h2 className="text-base sm:text-lg font-black uppercase tracking-wider text-[#0b3663]">
+                <h2 className="text-base sm:text-lg font-bold uppercase tracking-wider text-[#991b1b]">
                   {pageTitle}
                 </h2>
-                <span className="text-[10px] bg-[#00a8e8]/10 text-[#00a8e8] font-bold px-2 py-0.5 border border-[#00a8e8]/30 uppercase tracking-widest">
+                <span className="text-[10px] bg-[#dc2626]/10 text-[#dc2626] font-bold px-2 py-0.5 border border-[#dc2626]/30 uppercase tracking-widest">
                   {items.length} Active {items.length === 1 ? "Item" : "Items"}
                 </span>
               </div>
@@ -589,7 +482,7 @@ export default function SubServiceManager({
           <div className="flex items-center gap-2 self-start md:self-auto">
             <button
               onClick={openNewModal}
-              className="flex items-center justify-center space-x-1.5 bg-[#0b3663] hover:bg-[#00a8e8] text-white px-4 py-2.5 text-xs font-black uppercase tracking-wider transition-all shadow-sm"
+              className="flex items-center justify-center space-x-1.5 bg-[#991b1b] hover:bg-[#dc2626] text-white px-4 py-2.5 text-xs font-bold uppercase tracking-wider transition-all shadow-sm"
             >
               <Plus className="w-4 h-4" />
               <span>Add New {categoryName}</span>
@@ -607,7 +500,7 @@ export default function SubServiceManager({
                 placeholder={`Search ${categoryName.toLowerCase()}s by title, slug, or details...`}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-xs border border-slate-300 focus:outline-none focus:border-[#0b3663]"
+                className="w-full pl-9 pr-3 py-2 text-xs border border-slate-300 focus:outline-none focus:border-[#991b1b]"
               />
             </div>
 
@@ -617,7 +510,7 @@ export default function SubServiceManager({
                 <select
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="w-full sm:w-auto text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663] bg-white font-semibold"
+                  className="w-full sm:w-auto text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-white font-semibold"
                 >
                   <option value="ALL">All Categories ({items.length})</option>
                   {SERVICE_CATEGORIES.map((cat) => (
@@ -632,7 +525,7 @@ export default function SubServiceManager({
 
           <div className="text-[11px] font-semibold text-slate-500 flex items-center gap-3 self-end sm:self-auto">
             <span>Showing: <strong className="text-slate-800">{filteredItems.length}</strong></span>
-            <span>Featured: <strong className="text-[#00a8e8]">{featuredCount}</strong></span>
+            <span>Featured: <strong className="text-[#dc2626]">{featuredCount}</strong></span>
           </div>
         </div>
 
@@ -640,7 +533,7 @@ export default function SubServiceManager({
         <div className="bg-white border border-slate-200 shadow-2xs">
           {loading ? (
             <div className="p-16 text-center text-slate-400">
-              <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-[#00a8e8]" />
+              <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-[#dc2626]" />
               <p className="text-xs font-semibold">Loading items from database...</p>
             </div>
           ) : filteredItems.length === 0 ? (
@@ -654,7 +547,7 @@ export default function SubServiceManager({
               </div>
               <button
                 onClick={openNewModal}
-                className="inline-flex items-center space-x-1.5 bg-[#0b3663] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#00a8e8] transition-colors"
+                className="inline-flex items-center space-x-1.5 bg-[#991b1b] text-white px-4 py-2 text-xs font-bold uppercase tracking-wider hover:bg-[#dc2626] transition-colors"
               >
                 <Plus className="w-4 h-4" />
                 <span>Add {categoryName} Now</span>
@@ -719,14 +612,14 @@ export default function SubServiceManager({
                         {/* Category (if viewing All) */}
                         {parentSlug === "ALL" && (
                           <td className="py-3 px-3 sm:px-4">
-                            <span className="px-2 py-0.5 bg-slate-100 border border-slate-200 font-bold text-[#0b3663] text-[10px] uppercase">
+                            <span className="px-2 py-0.5 bg-slate-100 border border-slate-200 font-bold text-[#991b1b] text-[10px] uppercase">
                               {item.parentTitle || item.parentSlug}
                             </span>
                           </td>
                         )}
 
                         {/* Price */}
-                        <td className="py-3 px-3 sm:px-4 font-bold text-[#0b3663]">
+                        <td className="py-3 px-3 sm:px-4 font-bold text-[#991b1b]">
                           {itemPrice}
                         </td>
 
@@ -768,7 +661,7 @@ export default function SubServiceManager({
                         <td className="py-3 px-3 sm:px-4 text-right space-x-1.5">
                           <button
                             onClick={() => openEditModal(item)}
-                            className="p-1.5 bg-slate-100 hover:bg-[#00a8e8] hover:text-white text-slate-700 transition-colors"
+                            className="p-1.5 bg-slate-100 hover:bg-[#dc2626] hover:text-white text-slate-700 transition-colors"
                             title={`Edit ${categoryName}`}
                           >
                             <Edit2 className="w-3.5 h-3.5" />
@@ -797,11 +690,11 @@ export default function SubServiceManager({
               {/* Modal Header */}
               <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-slate-200 mb-4 sm:mb-6 sticky top-0 bg-white z-20">
                 <div className="flex items-center space-x-2.5">
-                  <div className="p-2 bg-[#0b3663] text-white">
-                    <HeaderIcon className="w-4 h-4 text-[#00a8e8]" />
+                  <div className="p-2 bg-[#991b1b] text-white">
+                    <HeaderIcon className="w-4 h-4 text-[#dc2626]" />
                   </div>
                   <div>
-                    <h3 className="text-sm sm:text-base font-black uppercase tracking-wider text-[#0b3663]">
+                    <h3 className="text-sm sm:text-base font-bold uppercase tracking-wider text-[#991b1b]">
                       {editingItem.id ? `Edit ${categoryName}` : `Create New ${categoryName}`}
                     </h3>
                     <p className="text-[10px] text-slate-500">
@@ -834,7 +727,7 @@ export default function SubServiceManager({
                       required
                       value={editingItem.parentSlug || (parentSlug !== "ALL" ? parentSlug : "visa-processing")}
                       onChange={(e) => handleCategoryChange(e.target.value)}
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663] bg-white font-semibold"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-white font-semibold"
                     >
                       {SERVICE_CATEGORIES.map((s) => (
                         <option key={s.slug} value={s.slug}>
@@ -863,8 +756,8 @@ export default function SubServiceManager({
                             : val.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""),
                         });
                       }}
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663] font-semibold"
-                      placeholder={CATEGORY_DEFAULTS[editingItem.parentSlug || "visa-processing"]?.titlePlaceholder || "e.g. Title"}
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b] font-semibold"
+                      placeholder={CATEGORY_DEFAULTS[editingItem.parentSlug || "luxury-cars"]?.titlePlaceholder || "e.g. Mercedes S-Class"}
                     />
                   </div>
                 </div>
@@ -882,7 +775,7 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, slug: e.target.value.toLowerCase().replace(/[^a-z0-9]+/g, "-") })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663] font-mono text-slate-800"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b] font-mono text-slate-800"
                       placeholder="e.g. dubai-tourist-visa"
                     />
                   </div>
@@ -897,7 +790,7 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, subtitle: e.target.value })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
                       placeholder="e.g. High approval advisory & fast processing"
                     />
                   </div>
@@ -912,7 +805,7 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, badge: e.target.value })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
                       placeholder="e.g. Express, Top Seller, 5-Star"
                     />
                   </div>
@@ -922,7 +815,7 @@ export default function SubServiceManager({
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 border-t border-slate-200 pt-4">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Price / Starting Fee
+                      Price / Starting Fee (PKR)
                     </label>
                     <input
                       type="text"
@@ -930,14 +823,28 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, priceOrFee: e.target.value })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
-                      placeholder="e.g. PKR 145,000 / Person or PKR 25,000"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
+                      placeholder="e.g. PKR 15,000 / Day"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
+                      Price (USD) - Optional
+                    </label>
+                    <input
+                      type="text"
+                      value={editingItem.priceUsd || ""}
+                      onChange={(e) =>
+                        setEditingItem({ ...editingItem, priceUsd: e.target.value })
+                      }
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
+                      placeholder="e.g. $55 / Day"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Processing Time / Duration
+                      Transmission
                     </label>
                     <input
                       type="text"
@@ -945,14 +852,14 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, durationOrProcessing: e.target.value })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
-                      placeholder="e.g. 5 Days / 4 Nights, 3-5 Working Days"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
+                      placeholder="e.g. Automatic / Manual"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Validity Period
+                      Fuel Type
                     </label>
                     <input
                       type="text"
@@ -960,14 +867,14 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, validity: e.target.value })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
-                      placeholder="e.g. 30 Days from issue, Year-Round"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
+                      placeholder="e.g. Petrol, Diesel, Hybrid"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Stay Duration / Sector
+                      Seating Capacity
                     </label>
                     <input
                       type="text"
@@ -975,14 +882,14 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, stayDuration: e.target.value })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
-                      placeholder="e.g. 30 Days, 5 Nights, Jeddah/Madinah"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
+                      placeholder="e.g. 4 Seats, 7 Seats"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Entry Type / Package Type
+                      With Driver / Self Drive
                     </label>
                     <input
                       type="text"
@@ -990,8 +897,8 @@ export default function SubServiceManager({
                       onChange={(e) =>
                         setEditingItem({ ...editingItem, entryType: e.target.value })
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
-                      placeholder="e.g. Single / Multiple Entry, 5-Star Luxury"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
+                      placeholder="e.g. Both Options Available"
                     />
                   </div>
 
@@ -1003,7 +910,7 @@ export default function SubServiceManager({
                         onChange={(e) =>
                           setEditingItem({ ...editingItem, isFeatured: e.target.checked, featured: e.target.checked })
                         }
-                        className="w-4 h-4 text-[#00a8e8] border-slate-300 rounded focus:ring-[#00a8e8]"
+                        className="w-4 h-4 text-[#dc2626] border-slate-300 rounded focus:ring-[#dc2626]"
                       />
                       <span className="text-xs font-bold uppercase tracking-wider text-slate-800">
                         Feature on Website / Home
@@ -1033,7 +940,7 @@ export default function SubServiceManager({
                     onChange={(e) =>
                       setEditingItem({ ...editingItem, overview: e.target.value, description: e.target.value })
                     }
-                    className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
+                    className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
                     placeholder="Provide a comprehensive summary of this service, destination, procedures, or package highlights..."
                   />
                 </div>
@@ -1042,26 +949,26 @@ export default function SubServiceManager({
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 border-t border-slate-200 pt-4">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Required Documents / Criteria (1 item per line)
+                      Required Documents (1 item per line)
                     </label>
                     <textarea
                       rows={4}
                       value={reqsStr}
                       onChange={(e) => setReqsStr(e.target.value)}
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
                       placeholder="Original Passport (6+ months validity)&#10;2 Passport size photos with white background&#10;Valid CNIC copy&#10;Last 6 months bank statement"
                     />
                   </div>
 
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-slate-700 mb-1">
-                      Included In Service / Features (1 item per line)
+                      Car Features / Included (1 item per line)
                     </label>
                     <textarea
                       rows={4}
                       value={inclusionsStr}
                       onChange={(e) => setInclusionsStr(e.target.value)}
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663]"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
                       placeholder="Embassy Form Filing & Appointment&#10;Verifiable Hotel Booking Vouchers&#10;Confirmed Return Flight Reservation&#10;24/7 Ground Coordinator Assistance"
                     />
                   </div>
@@ -1083,7 +990,7 @@ export default function SubServiceManager({
                       onClick={addStep}
                       className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 border border-slate-300 transition-colors self-start sm:self-auto"
                     >
-                      <Plus className="w-3.5 h-3.5 text-[#00a8e8]" />
+                      <Plus className="w-3.5 h-3.5 text-[#dc2626]" />
                       <span>{editingItem.parentSlug === "tour-packages" ? "Add Day" : "Add Step"}</span>
                     </button>
                   </div>
@@ -1097,7 +1004,7 @@ export default function SubServiceManager({
                       {steps.map((step, idx) => (
                         <div key={idx} className="p-3 bg-slate-50 border border-slate-300 relative space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold uppercase tracking-wider text-[#00a8e8]">
+                            <span className="text-xs font-bold uppercase tracking-wider text-[#dc2626]">
                               {editingItem.parentSlug === "tour-packages" ? `Day #${idx + 1}` : `Step #${idx + 1}`}
                             </span>
                             <button
@@ -1114,14 +1021,14 @@ export default function SubServiceManager({
                             placeholder={editingItem.parentSlug === "tour-packages" ? "Day Title (e.g. Day 1: Arrival & Dhow Cruise)" : "Step Title (e.g. Step 1: Document Auditing)"}
                             value={step.title}
                             onChange={(e) => updateStep(idx, "title", e.target.value)}
-                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#0b3663] font-semibold"
+                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#991b1b] font-semibold"
                           />
                           <textarea
                             rows={2}
                             placeholder="Description / activities / requirements..."
                             value={step.description}
                             onChange={(e) => updateStep(idx, "description", e.target.value)}
-                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#0b3663]"
+                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#991b1b]"
                           />
                         </div>
                       ))}
@@ -1145,7 +1052,7 @@ export default function SubServiceManager({
                       onClick={addFaq}
                       className="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 border border-slate-300 transition-colors self-start sm:self-auto"
                     >
-                      <Plus className="w-3.5 h-3.5 text-[#00a8e8]" />
+                      <Plus className="w-3.5 h-3.5 text-[#dc2626]" />
                       <span>Add FAQ</span>
                     </button>
                   </div>
@@ -1159,7 +1066,7 @@ export default function SubServiceManager({
                       {faqs.map((faq, idx) => (
                         <div key={idx} className="p-3 bg-slate-50 border border-slate-300 relative space-y-2">
                           <div className="flex items-center justify-between">
-                            <span className="text-xs font-bold uppercase tracking-wider text-[#0b3663]">
+                            <span className="text-xs font-bold uppercase tracking-wider text-[#991b1b]">
                               FAQ #{idx + 1}
                             </span>
                             <button
@@ -1176,14 +1083,14 @@ export default function SubServiceManager({
                             placeholder="Question (e.g. How long does the visa take?)"
                             value={faq.question}
                             onChange={(e) => updateFaq(idx, "question", e.target.value)}
-                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#0b3663] font-semibold"
+                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#991b1b] font-semibold"
                           />
                           <textarea
                             rows={2}
                             placeholder="Answer / response..."
                             value={faq.answer}
                             onChange={(e) => updateFaq(idx, "answer", e.target.value)}
-                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#0b3663]"
+                            className="w-full text-xs px-2.5 py-1.5 border border-slate-300 bg-white focus:outline-none focus:border-[#991b1b]"
                           />
                         </div>
                       ))}
@@ -1203,7 +1110,7 @@ export default function SubServiceManager({
                   <button
                     type="submit"
                     disabled={saving}
-                    className="flex items-center space-x-1.5 bg-[#0b3663] hover:bg-[#00a8e8] text-white px-6 py-2 text-xs font-black uppercase tracking-wider transition-colors disabled:opacity-50"
+                    className="flex items-center space-x-1.5 bg-[#991b1b] hover:bg-[#dc2626] text-white px-6 py-2 text-xs font-bold uppercase tracking-wider transition-colors disabled:opacity-50"
                   >
                     {saving ? (
                       <>

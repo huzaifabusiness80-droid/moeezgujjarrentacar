@@ -22,41 +22,41 @@ interface BannerSlide {
 const slides: BannerSlide[] = [
   {
     id: 1,
-    imageSrc: "/hero-banner-1.jpg",
-    badge: "Govt. Licensed Agency • LIC # LHR 10981",
-    title: "Explore The World With",
-    highlightText: "Confidence & Luxury",
-    description: "Licensed travel solutions, high approval worldwide visas, direct IATA airline ticketing, and tailor-made international tour packages from Vehari.",
-    primaryButtonText: "Explore Tour Packages",
-    primaryButtonHref: "/services/tour-packages",
-    secondaryButtonText: "Chat On WhatsApp",
-    secondaryButtonHref: "https://wa.me/923088171622?text=Assalam-o-Alaikum%20Fly%20Sky%20Travel!%20I%20want%20information%20about%20tours%20and%20flights.",
+    imageSrc: "/fleet/mercedes-s-class.jpg",
+    badge: "Premium Car Rental Service",
+    title: "Travel in Style With Our",
+    highlightText: "Luxury Fleet",
+    description: "Experience the ultimate comfort and prestige with our premium selection of luxury cars, perfect for weddings and VIP events.",
+    primaryButtonText: "View Luxury Cars",
+    primaryButtonHref: "/services/luxury-cars",
+    secondaryButtonText: "Book via WhatsApp",
+    secondaryButtonHref: "https://wa.me/923200494141?text=Assalam-o-Alaikum%20Moeez%20Gujjar%20Rent%20A%20Car!%20I%20want%20to%20book%20a%20luxury%20car.",
     isWhatsAppSecondary: true,
   },
   {
     id: 2,
-    imageSrc: "/hero-banner-2.jpg",
-    badge: "Official Visa Consultancy Desk",
-    title: "Fast-Track Global Visas For",
-    highlightText: "UK, USA, Europe & UAE",
-    description: "100% genuine embassy file preparation for Schengen, UK, USA, Turkey, Azerbaijan, and Gulf e-visas with appointment booking assistance.",
-    primaryButtonText: "Apply For Visa",
-    primaryButtonHref: "/services/visa-processing",
-    secondaryButtonText: "Call Helpline",
-    secondaryButtonHref: "tel:+923088171622",
+    imageSrc: "/fleet/land-cruiser-v8.jpg",
+    badge: "Reliable SUV Rentals",
+    title: "Explore Northern Areas In",
+    highlightText: "Powerful 4x4s",
+    description: "Rent robust and spacious SUVs like Land Cruiser V8 and Prado TX for your family trips and off-road adventures.",
+    primaryButtonText: "View SUVs",
+    primaryButtonHref: "/services/suv-rentals",
+    secondaryButtonText: "Call Now",
+    secondaryButtonHref: "tel:+923200494141",
     isWhatsAppSecondary: false,
   },
   {
     id: 3,
-    imageSrc: "/hero-banner-3.jpg",
-    badge: "Exclusive Holiday Packages",
-    title: "Unforgettable Journeys To",
-    highlightText: "Dubai, Turkey & Baku",
-    description: "Handpicked 4-star and 5-star hotels, verified desert safaris, private airport transfers, and English/Urdu speaking guided excursions.",
-    primaryButtonText: "View Featured Packages",
-    primaryButtonHref: "/#tours",
-    secondaryButtonText: "Instant WhatsApp Quote",
-    secondaryButtonHref: "https://wa.me/923088171622?text=Assalam-o-Alaikum%20Fly%20Sky%20Travel!%20I%20want%20a%20quote%20for%20tour%20packages.",
+    imageSrc: "/fleet/honda-civic-rs.jpg",
+    badge: "Affordable Daily Rentals",
+    title: "Economy Cars For Your",
+    highlightText: "Everyday Needs",
+    description: "Need a car for inter-city travel or daily errands? We offer fuel-efficient and reliable economy sedans at the best rates.",
+    primaryButtonText: "View Economy Cars",
+    primaryButtonHref: "/services/economy-cars",
+    secondaryButtonText: "Get an Instant Quote",
+    secondaryButtonHref: "https://wa.me/923200494141?text=Assalam-o-Alaikum%20Moeez%20Gujjar%20Rent%20A%20Car!%20I%20want%20to%20inquire%20about%20daily%20rentals.",
     isWhatsAppSecondary: true,
   },
 ];
@@ -141,7 +141,7 @@ export default function HeroCarousel() {
                 <div className="max-w-2xl lg:max-w-3xl space-y-4 sm:space-y-6">
                   
                   {/* Badge */}
-                  <div className="inline-flex items-center gap-2 bg-[#00a8e8] text-white px-3.5 py-1 text-xs sm:text-xs font-bold uppercase tracking-wider rounded-none">
+                  <div className="inline-flex items-center gap-2 bg-[#dc2626] text-white px-3.5 py-1 text-xs sm:text-xs font-bold uppercase tracking-wider rounded-none">
                     <Award className="w-4 h-4" />
                     <span>{slide.badge}</span>
                   </div>
@@ -149,7 +149,7 @@ export default function HeroCarousel() {
                   {/* Headline */}
                   <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-tight">
                     {slide.title}{" "}
-                    <span className="text-[#00a8e8] block sm:inline">
+                    <span className="text-[#dc2626] block sm:inline">
                       {slide.highlightText}
                     </span>
                   </h1>
@@ -184,7 +184,7 @@ export default function HeroCarousel() {
                         href={slide.secondaryButtonHref}
                         className="px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs uppercase tracking-wider rounded-none transition-colors flex items-center gap-2"
                       >
-                        <Phone className="w-4 h-4 text-[#00a8e8]" />
+                        <Phone className="w-4 h-4 text-[#dc2626]" />
                         <span>{slide.secondaryButtonText}</span>
                       </a>
                     )}

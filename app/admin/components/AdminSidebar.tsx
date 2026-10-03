@@ -54,43 +54,13 @@ export default function AdminSidebar({
       badge: "Live",
     },
     {
-      title: "Visa Processing",
-      href: "/admin/visas",
-      icon: FileCheck2,
-    },
-    {
-      title: "Tour Packages",
-      href: "/admin/packages",
-      icon: Plane,
-    },
-    {
-      title: "Flight Bookings",
-      href: "/admin/flights",
-      icon: Plane,
-    },
-    {
-      title: "Umrah & Hajj",
-      href: "/admin/umrah",
-      icon: Moon,
-    },
-    {
-      title: "Hotel Bookings",
-      href: "/admin/hotels",
-      icon: Building2,
-    },
-    {
-      title: "Travel Insurance",
-      href: "/admin/insurance",
-      icon: ShieldCheck,
-    },
-    {
-      title: "Destinations",
-      href: "/admin/destinations",
-      icon: MapPin,
-    },
-    {
-      title: "Main Services",
+      title: "Car Categories",
       href: "/admin/services",
+      icon: Layers,
+    },
+    {
+      title: "Fleet & Cars",
+      href: "/admin/sub-services",
       icon: Layers,
     },
   ];
@@ -104,12 +74,12 @@ export default function AdminSidebar({
           onClick={onClose}
           className="flex items-center space-x-2.5"
         >
-          <div className="w-8 h-8 bg-[#00a8e8] flex items-center justify-center font-black text-white text-base tracking-wider shadow-xs rounded-xs">
+          <div className="w-8 h-8 bg-[#dc2626] flex items-center justify-center font-bold text-white text-base tracking-wider shadow-xs rounded-xs">
             FS
           </div>
           <div>
-            <h1 className="text-sm font-black uppercase tracking-wider text-[#0b3663] leading-tight">
-              Fly Sky Admin
+            <h1 className="text-sm font-bold uppercase tracking-wider text-[#991b1b] leading-tight">
+              Rent A Car Admin
             </h1>
             <p className="text-[10px] text-[#008bbd] font-mono uppercase tracking-widest font-bold">
               Control Portal
@@ -145,8 +115,8 @@ export default function AdminSidebar({
               onClick={onClose}
               className={`flex items-center justify-between px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-all rounded-xs ${
                 isActive
-                  ? "bg-[#00a8e8] text-white shadow-xs"
-                  : "text-slate-700 hover:bg-[#d8edfa] hover:text-[#0b3663]"
+                  ? "bg-[#dc2626] text-white shadow-xs"
+                  : "text-slate-700 hover:bg-[#d8edfa] hover:text-[#991b1b]"
               }`}
             >
               <div className="flex items-center space-x-2.5">
@@ -158,7 +128,7 @@ export default function AdminSidebar({
                 <span className="truncate">{item.title}</span>
               </div>
               {item.badge && (
-                <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.5 font-black uppercase tracking-wider animate-pulse flex-shrink-0 ml-2 rounded-xs">
+                <span className="text-[9px] bg-red-600 text-white px-1.5 py-0.5 font-bold uppercase tracking-wider animate-pulse flex-shrink-0 ml-2 rounded-xs">
                   {item.badge}
                 </span>
               )}
@@ -173,7 +143,7 @@ export default function AdminSidebar({
           href="/"
           target="_blank"
           onClick={onClose}
-          className="flex items-center space-x-2 px-3 py-2 text-xs font-bold text-slate-700 hover:text-[#0b3663] hover:bg-[#d5ebf9] transition-colors rounded-xs"
+          className="flex items-center space-x-2 px-3 py-2 text-xs font-bold text-slate-700 hover:text-[#991b1b] hover:bg-[#d5ebf9] transition-colors rounded-xs"
         >
           <Globe className="w-4 h-4 text-[#008bbd] flex-shrink-0" />
           <span className="truncate">View Live Website</span>

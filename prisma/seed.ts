@@ -7,194 +7,77 @@ const prisma = new PrismaClient();
 
 const initialPackages = [
   {
-    slug: "dubai-deluxe",
-    title: "Dubai Deluxe Explorer",
-    category: "City Tours, Desert Safari, Burj Khalifa",
-    duration: "5 days",
-    price: "PKR 145,000",
-    originalPrice: "PKR 165,000",
-    imageSrc: "/destinations/dubai.jpg",
+    slug: "wedding-package",
+    title: "Premium Wedding Package",
+    category: "Luxury, Events",
+    duration: "1 day",
+    price: "Call for price",
+    originalPrice: "Special Offer",
+    imageSrc: "/fleet/mercedes-s-class.jpg",
     rating: 5,
-    reviewsCount: 28,
+    reviewsCount: 42,
     isSale: true,
-    link: "/services/tour-packages/dubai-tour",
+    link: "/services/luxury-cars/mercedes-s-class",
     order: 1,
   },
   {
-    slug: "grand-turkey",
-    title: "Grand Turkey & Cappadocia",
-    category: "Istanbul, Bosphorus, Hot Air Balloon",
+    slug: "northern-tour-package",
+    title: "Northern Areas Expedition",
+    category: "SUV, Off-road, Tour",
     duration: "7 days",
-    price: "PKR 285,000",
-    originalPrice: "PKR 310,000",
-    imageSrc: "/destinations/turkey.jpg",
+    price: "Custom Quote",
+    originalPrice: "Custom Quote",
+    imageSrc: "/fleet/land-cruiser-v8.jpg",
     rating: 5,
-    reviewsCount: 34,
+    reviewsCount: 38,
     isSale: false,
-    link: "/services/tour-packages/turkey-tour",
+    link: "/services/suv-rentals/land-cruiser-v8",
     order: 2,
-  },
-  {
-    slug: "baku-azerbaijan",
-    title: "Baku & Gabala Mountain Tour",
-    category: "Shahdag Snow, City Tours, Historic",
-    duration: "5 days",
-    price: "PKR 165,000",
-    originalPrice: "PKR 185,000",
-    imageSrc: "/destinations/azerbaijan.jpg",
-    rating: 5,
-    reviewsCount: 19,
-    isSale: true,
-    link: "/services/tour-packages/baku-tour",
-    order: 3,
-  },
-  {
-    slug: "malaysia-escape",
-    title: "Discover Malaysia & Langkawi",
-    category: "Kuala Lumpur, Genting Cable Car, Beach",
-    duration: "6 days",
-    price: "PKR 195,000",
-    originalPrice: "PKR 215,000",
-    imageSrc: "/destinations/malaysia.jpg",
-    rating: 5,
-    reviewsCount: 22,
-    isSale: false,
-    link: "/services/tour-packages/malaysia-tour",
-    order: 4,
-  },
-  {
-    slug: "thailand-island",
-    title: "Thailand Bangkok & Phuket",
-    category: "Island Hopping, City Tours, Beaches",
-    duration: "6 days",
-    price: "PKR 175,000",
-    originalPrice: "PKR 195,000",
-    imageSrc: "/destinations/thailand.jpg",
-    rating: 5,
-    reviewsCount: 16,
-    isSale: false,
-    link: "/services/tour-packages/thailand-tour",
-    order: 5,
-  },
-  {
-    slug: "london-uk",
-    title: "London & UK Experience",
-    category: "Iconic Landmarks, Shopping, Urban",
-    duration: "8 days",
-    price: "PKR 490,000",
-    originalPrice: "PKR 520,000",
-    imageSrc: "/destinations/london.jpg",
-    rating: 5,
-    reviewsCount: 12,
-    isSale: false,
-    link: "/services/visa-processing/uk-visa",
-    order: 6,
-  },
+  }
 ];
 
 const initialDestinations = [
   {
-    name: "Dubai",
-    country: "UAE",
-    imageSrc: "/destinations/dubai.jpg",
-    visaType: "5 Year Multiple & Tourist",
-    processingTime: "24-48 Hours",
-    highlight: "Done Base Tourist Visa",
-    link: "/services/visa-processing/uae-visa",
-    category: "middle-east",
+    name: "Lahore City Tour",
+    country: "Pakistan",
+    imageSrc: "/fleet/honda-civic-rs.jpg",
+    visaType: "City Travel",
+    processingTime: "Instant Booking",
+    highlight: "Comfortable sedans for city exploring",
+    link: "/services/economy-cars/honda-civic-rs",
+    category: "local",
     order: 1,
   },
   {
-    name: "Bahrain",
-    country: "Bahrain",
-    imageSrc: "/destinations/bahrain.jpg",
-    visaType: "Single & Multiple Entry",
-    processingTime: "3-5 Working Days",
-    highlight: "Stunning Views & Visit Visa",
-    link: "/services/visa-processing",
-    category: "middle-east",
+    name: "Hunza & Skardu Trip",
+    country: "Pakistan",
+    imageSrc: "/fleet/prado-tx.jpg",
+    visaType: "Northern Trip",
+    processingTime: "Advance Booking",
+    highlight: "Powerful SUVs for mountains",
+    link: "/services/suv-rentals/prado-tx",
+    category: "northern",
     order: 2,
-  },
-  {
-    name: "Turkey",
-    country: "Turkey",
-    imageSrc: "/destinations/turkey.jpg",
-    visaType: "E-Visa & Sticker Visa",
-    processingTime: "Hassle-Free Approval",
-    highlight: "Istanbul & Cappadocia",
-    link: "/services/visa-processing/turkey-visa",
-    category: "europe",
-    order: 3,
-  },
-  {
-    name: "Malaysia",
-    country: "Malaysia",
-    imageSrc: "/destinations/malaysia.jpg",
-    visaType: "E-Visa & Tourist Visa",
-    processingTime: "Quick Approval",
-    highlight: "Kuala Lumpur & Islands",
-    link: "/services/tour-packages/malaysia-tour",
-    category: "asia",
-    order: 4,
-  },
-  {
-    name: "Thailand",
-    country: "Thailand",
-    imageSrc: "/destinations/thailand.jpg",
-    visaType: "Tourist Visa",
-    processingTime: "Fast Processing",
-    highlight: "Bangkok & Phuket Tours",
-    link: "/services/tour-packages/thailand-tour",
-    category: "asia",
-    order: 5,
-  },
-  {
-    name: "Azerbaijan",
-    country: "Azerbaijan",
-    imageSrc: "/destinations/azerbaijan.jpg",
-    visaType: "ASAN E-Visa",
-    processingTime: "3 Hours / 3 Days",
-    highlight: "Baku City & Mountains",
-    link: "/services/visa-processing/azerbaijan-visa",
-    category: "europe",
-    order: 6,
-  },
-  {
-    name: "Singapore",
-    country: "Singapore",
-    imageSrc: "/destinations/singapore.jpg",
-    visaType: "E-Visa Facility",
-    processingTime: "Fast Track",
-    highlight: "Marina Bay & City Tours",
-    link: "/services/visa-processing",
-    category: "asia",
-    order: 7,
-  },
-  {
-    name: "Egypt",
-    country: "Egypt",
-    imageSrc: "/destinations/egypt.jpg",
-    visaType: "Tourist & Visit Visa",
-    processingTime: "Smooth Processing",
-    highlight: "Pyramids & Historic Tours",
-    link: "/services/visa-processing",
-    category: "middle-east",
-    order: 8,
-  },
+  }
 ];
 
 async function main() {
-  console.log("🌱 Starting Neon PostgreSQL Database Seed...");
+  console.log("🌱 Starting Neon PostgreSQL Database Seed for Moeez Gujjar Rent A Car...");
+
+  await prisma.package.deleteMany();
+  await prisma.destination.deleteMany();
+  await prisma.subService.deleteMany();
+  await prisma.service.deleteMany();
 
   // 1. Seed Admin Account
-  const hashedPassword = await bcrypt.hash("Admin@FlySky2026!", 10);
+  const hashedPassword = await bcrypt.hash("Admin@RentACar2026!", 10);
   const admin = await prisma.admin.upsert({
-    where: { email: "admin@flyskytravel.com" },
+    where: { email: "admin@moeezgujjarrentacar.com" },
     update: {},
     create: {
-      email: "admin@flyskytravel.com",
+      email: "admin@moeezgujjarrentacar.com",
       password: hashedPassword,
-      name: "Fly Sky Admin",
+      name: "Moeez Gujjar Admin",
       role: "SUPER_ADMIN",
     },
   });
@@ -267,7 +150,7 @@ async function main() {
       },
     });
   }
-  console.log("✅ Sub-Services (Visas, Tours, Flights, Umrah) seeded successfully.");
+  console.log("✅ Cars (Sub-Services) seeded successfully.");
 
   // 4. Seed Featured Tour Packages
   for (const pkg of initialPackages) {
@@ -277,7 +160,7 @@ async function main() {
       create: pkg,
     });
   }
-  console.log("✅ Featured Tour Packages seeded successfully.");
+  console.log("✅ Featured Rental Packages seeded successfully.");
 
   // 5. Seed Popular Destinations
   for (const dest of initialDestinations) {
@@ -295,7 +178,7 @@ async function main() {
       });
     }
   }
-  console.log("✅ Popular Destinations seeded successfully.");
+  console.log("✅ Popular Use Cases seeded successfully.");
 
   console.log("🚀 Database seeding completed successfully!");
 }

@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function AdminLoginPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@flyskytravel.com");
+  const [email, setEmail] = useState("Mueezgujjar85@gmail.com");
   const [password, setPassword] = useState("Admin@FlySky2026!");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,25 +40,24 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0b3663] flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background Graphic Accents */}
-      <div className="absolute inset-0 opacity-10 pointer-events-none bg-[radial-gradient(#00a8e8_1px,transparent_1px)] [background-size:16px_16px]"></div>
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#00a8e8]/20 blur-3xl rounded-none pointer-events-none"></div>
+      <div className="absolute inset-0 opacity-40 pointer-events-none bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 px-4">
         <div className="text-center">
-          <div className="inline-flex items-center justify-center w-14 h-14 bg-[#00a8e8] text-white text-2xl font-black mb-4">
-            FS
+          <div className="inline-flex items-center justify-center w-14 h-14 bg-slate-900 text-white text-2xl font-bold mb-4 rounded-lg shadow-sm">
+            MG
           </div>
-          <h2 className="text-2xl font-black uppercase tracking-wider text-white">
-            Fly Sky Portal Login
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900">
+            Admin Portal
           </h2>
-          <p className="mt-1 text-xs uppercase tracking-widest text-[#00a8e8] font-mono">
-            Authorized Personnel Only
+          <p className="mt-1 text-sm text-slate-500">
+            Moeez Gujjar Rent A Car
           </p>
         </div>
 
-        <div className="mt-8 bg-white p-8 border-t-4 border-[#00a8e8] shadow-2xl">
+        <div className="mt-8 bg-white p-8 border border-slate-200 shadow-lg rounded-xl">
           {error && (
             <div className="mb-6 p-3 bg-red-50 border-l-4 border-red-600 flex items-center space-x-2 text-red-700 text-xs font-semibold">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
@@ -80,8 +79,8 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2.5 text-sm border border-slate-300 focus:outline-none focus:border-[#0b3663] bg-slate-50 focus:bg-white transition-colors"
-                  placeholder="admin@flyskytravel.com"
+                  className="block w-full pl-10 pr-3 py-2.5 text-sm border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-slate-50 focus:bg-white transition-colors"
+                  placeholder="Mueezgujjar85@gmail.com"
                 />
               </div>
             </div>
@@ -99,17 +98,17 @@ export default function AdminLoginPage() {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-10 pr-3 py-2.5 text-sm border border-slate-300 focus:outline-none focus:border-[#0b3663] bg-slate-50 focus:bg-white transition-colors"
+                  className="block w-full pl-10 pr-3 py-2.5 text-sm border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-slate-50 focus:bg-white transition-colors"
                   placeholder="••••••••••••"
                 />
               </div>
             </div>
 
-            <div className="p-3 bg-slate-50 border border-slate-200 text-[11px] text-slate-600">
-              <span className="font-bold text-[#0b3663]">Default Seed Credentials:</span>
-              <div className="mt-1 font-mono text-[10px] space-y-0.5 text-slate-700">
-                <div>Email: <span className="font-semibold">admin@flyskytravel.com</span></div>
-                <div>Pass: <span className="font-semibold">Admin@FlySky2026!</span></div>
+            <div className="p-3 bg-slate-50 border border-slate-200 text-xs text-slate-600 rounded-lg">
+              <span className="font-semibold text-slate-800">Default Credentials:</span>
+              <div className="mt-1 font-mono text-xs space-y-0.5 text-slate-500">
+                <div>Email: <span className="font-medium text-slate-900">Mueezgujjar85@gmail.com</span></div>
+                <div>Pass: <span className="font-medium text-slate-900">Admin@RentACar2026!</span></div>
               </div>
             </div>
 
@@ -117,7 +116,7 @@ export default function AdminLoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex justify-center items-center py-3 px-4 bg-[#0b3663] hover:bg-[#00a8e8] text-white text-xs font-black uppercase tracking-widest transition-colors duration-200 disabled:opacity-50"
+                className="w-full flex justify-center items-center py-2.5 px-4 bg-slate-900 hover:bg-slate-800 text-white text-sm font-semibold rounded-lg transition-colors duration-200 disabled:opacity-50 shadow-sm"
               >
                 {loading ? (
                   <>
@@ -126,7 +125,7 @@ export default function AdminLoginPage() {
                   </>
                 ) : (
                   <>
-                    <span>Sign In To Dashboard</span>
+                    <span>Sign In</span>
                     <ArrowRight className="w-4 h-4 ml-2" />
                   </>
                 )}
@@ -137,7 +136,7 @@ export default function AdminLoginPage() {
           <div className="mt-6 pt-4 border-t border-slate-200 text-center">
             <Link
               href="/"
-              className="text-xs text-slate-500 hover:text-[#0b3663] font-semibold"
+              className="text-xs text-slate-500 hover:text-[#991b1b] font-semibold"
             >
               ← Return to public website
             </Link>

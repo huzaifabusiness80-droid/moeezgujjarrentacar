@@ -1,44 +1,49 @@
 import Header from "./components/Header";
 import HeroCarousel from "./components/HeroCarousel";
-import PopularDestinations from "./components/PopularDestinations";
+import CarMarquee from "./components/CarMarquee";
 import FeaturedPackages from "./components/FeaturedPackages";
 import WhyChooseUs from "./components/WhyChooseUs";
 import ServicesSection from "./components/ServicesSection";
 import AboutSection from "./components/AboutSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import FAQSection from "./components/FAQSection";
 import InquiryFormSection from "./components/InquiryFormSection";
 import Footer from "./components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white antialiased font-sans">
-      {/* Top Header & Navigation */}
       <Header />
 
-      {/* Main Website Sections */}
       <main className="flex-1 w-full">
         {/* 1. Hero Banner Auto Carousel Slider */}
         <HeroCarousel />
 
-        {/* 2. Popular Destinations (Exact UI Reference Match) */}
-        <PopularDestinations />
+        {/* 2. Animated Car Marquee */}
+        <CarMarquee />
 
-        {/* 3. Featured Tour Packages (Exact UI Reference Match) */}
+        {/* 3. Featured Rental Packages */}
         <FeaturedPackages />
 
-        {/* 4. Why Choose Us (Exact UI Reference Match - Positioned above Services) */}
+        {/* 4. Why Choose Us */}
         <WhyChooseUs />
 
-        {/* 5. Core Travel Services Section */}
+        {/* 5. Core Car Rental Categories */}
         <ServicesSection />
 
-        {/* 6. About Fly Sky Travel & Tourism */}
+        {/* 6. About Moeez Gujjar Rent A Car */}
         <AboutSection />
 
-        {/* 7. Quick Booking & Inquiry Form */}
+        {/* 7. Testimonials */}
+        <TestimonialsSection />
+
+        {/* 8. FAQs */}
+        <FAQSection />
+
+        {/* 9. Quick Booking & Inquiry Form */}
         <InquiryFormSection />
       </main>
 
-      {/* Corporate Footer */}
       <Footer />
     </div>
   );

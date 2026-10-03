@@ -41,6 +41,7 @@ model SubService {
   badge                String
   image                String
   priceOrFee           String
+  priceUsd             String?
   durationOrProcessing String
   validity             String
   overview             String
@@ -60,6 +61,7 @@ model Package {
   category      String
   duration      String
   price         String
+  priceUsd      String?
   originalPrice String?
   imageSrc      String
   rating        Int      @default(5)

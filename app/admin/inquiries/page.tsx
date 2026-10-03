@@ -131,7 +131,7 @@ export default function AdminInquiriesPage() {
                 placeholder="Search by name, phone, email, service..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-9 pr-3 py-2 text-xs border border-slate-300 focus:outline-none focus:border-[#0b3663]"
+                className="w-full pl-9 pr-3 py-2 text-xs border border-slate-300 focus:outline-none focus:border-[#991b1b]"
               />
             </div>
 
@@ -140,7 +140,7 @@ export default function AdminInquiriesPage() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="w-full sm:w-auto text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663] bg-white font-semibold"
+                className="w-full sm:w-auto text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-white font-semibold"
               >
                 <option value="ALL">All Statuses</option>
                 <option value="NEW">New Inquiries</option>
@@ -164,7 +164,7 @@ export default function AdminInquiriesPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           <div className="lg:col-span-2 bg-white border border-slate-200 overflow-hidden shadow-2xs">
             <div className="p-3.5 sm:p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-              <h4 className="text-xs font-black uppercase tracking-wider text-slate-900">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
                 Incoming Inquiries ({filtered.length})
               </h4>
               <span className="text-[10px] text-slate-500 font-semibold">
@@ -174,7 +174,7 @@ export default function AdminInquiriesPage() {
 
             {loading ? (
               <div className="p-12 text-center text-slate-400">
-                <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-[#00a8e8]" />
+                <Loader2 className="w-8 h-8 animate-spin mx-auto mb-2 text-[#dc2626]" />
                 <p className="text-xs font-semibold">Fetching leads...</p>
               </div>
             ) : filtered.length === 0 ? (
@@ -191,7 +191,7 @@ export default function AdminInquiriesPage() {
                     ? `https://wa.me/${
                         phoneClean.startsWith("0") ? "92" + phoneClean.slice(1) : phoneClean
                       }?text=${encodeURIComponent(
-                        `Assalam-o-Alaikum ${inq.name}, Fly Sky Travel & Tours is reaching out regarding your inquiry for ${
+                        `Assalam-o-Alaikum ${inq.name}, Moeez Gujjar Rent A Car is reaching out regarding your inquiry for ${
                           inq.service || inq.destination || inq.subject || "our services"
                         }. How can we assist you?`
                       )}`
@@ -210,12 +210,12 @@ export default function AdminInquiriesPage() {
                         }
                       }}
                       className={`p-3.5 sm:p-4 cursor-pointer transition-colors flex items-start justify-between gap-3 ${
-                        isSelected ? "bg-sky-50/80 border-l-4 border-[#00a8e8]" : "hover:bg-slate-50"
+                        isSelected ? "bg-sky-50/80 border-l-4 border-[#dc2626]" : "hover:bg-slate-50"
                       }`}
                     >
                       <div className="space-y-1 min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-                          <span className="font-black text-slate-900 text-xs">
+                          <span className="font-bold text-slate-900 text-xs">
                             {inq.name}
                           </span>
                           <span
@@ -231,7 +231,7 @@ export default function AdminInquiriesPage() {
                           </span>
                         </div>
 
-                        <p className="text-xs font-semibold text-[#0b3663] truncate">
+                        <p className="text-xs font-semibold text-[#991b1b] truncate">
                           {inq.service || inq.subject || "General Inquiry"}
                           {inq.destination && (
                             <span className="text-slate-500 font-normal">
@@ -299,7 +299,7 @@ export default function AdminInquiriesPage() {
             {selectedInquiry ? (
               <div className="space-y-4">
                 <div className="flex items-center justify-between pb-3 border-b border-slate-200">
-                  <h4 className="text-xs font-black uppercase tracking-wider text-[#0b3663]">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#991b1b]">
                     Lead Details
                   </h4>
                   <div className="flex items-center space-x-2">
@@ -348,7 +348,7 @@ export default function AdminInquiriesPage() {
                     <label className="text-[10px] font-bold uppercase text-slate-400 block">
                       Requested Service
                     </label>
-                    <p className="font-bold text-[#00a8e8]">
+                    <p className="font-bold text-[#dc2626]">
                       {selectedInquiry.service || selectedInquiry.subject || "General Inquiry"}
                     </p>
                   </div>
@@ -394,7 +394,7 @@ export default function AdminInquiriesPage() {
                       onChange={(e) =>
                         handleUpdateStatus(selectedInquiry.id, e.target.value)
                       }
-                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663] bg-white font-bold"
+                      className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-white font-bold"
                     >
                       <option value="NEW">🔴 NEW - Pending Follow-up</option>
                       <option value="CONTACTED">🟡 CONTACTED - In Discussion</option>

@@ -23,6 +23,7 @@ export async function GET(request: Request) {
       name: item.title,
       description: item.overview,
       priceStarting: item.priceOrFee,
+      priceUsd: item.priceUsd,
       currency: "PKR",
       processingTime: item.durationOrProcessing,
       includes: item.inclusions,
@@ -78,6 +79,7 @@ export async function POST(request: Request) {
         badge: body.badge || "Featured",
         image: body.image || "/destinations/dubai.jpg",
         priceOrFee: body.priceOrFee || (body.priceStarting ? `PKR ${body.priceStarting}` : "Call for quote"),
+        priceUsd: body.priceUsd || null,
         durationOrProcessing: body.durationOrProcessing || body.processingTime || "3-5 Working Days",
         validity: body.validity || "30 Days",
         overview: body.overview || body.description || "",
@@ -99,6 +101,7 @@ export async function POST(request: Request) {
             category: body.subtitle || "Worldwide Tour",
             duration: body.durationOrProcessing || "5 Days",
             price: body.priceOrFee || "Call for quote",
+            priceUsd: body.priceUsd || null,
             imageSrc: body.image || "/destinations/dubai.jpg",
             isSale: body.isFeatured !== undefined ? !!body.isFeatured : true,
             link: `/services/tour-packages/${slug}`,
@@ -109,6 +112,7 @@ export async function POST(request: Request) {
             category: body.subtitle || "Worldwide Tour",
             duration: body.durationOrProcessing || "5 Days",
             price: body.priceOrFee || "Call for quote",
+            priceUsd: body.priceUsd || null,
             imageSrc: body.image || "/destinations/dubai.jpg",
             isSale: body.isFeatured !== undefined ? !!body.isFeatured : true,
             link: `/services/tour-packages/${slug}`,
@@ -169,6 +173,7 @@ export async function PUT(request: Request) {
     if (body.priceOrFee !== undefined || body.priceStarting !== undefined) {
       updateData.priceOrFee = body.priceOrFee || (body.priceStarting ? `PKR ${body.priceStarting}` : "Call for quote");
     }
+    if (body.priceUsd !== undefined) updateData.priceUsd = body.priceUsd;
     if (body.durationOrProcessing !== undefined || body.processingTime !== undefined) {
       updateData.durationOrProcessing = body.durationOrProcessing || body.processingTime || "";
     }

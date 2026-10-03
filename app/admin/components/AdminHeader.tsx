@@ -43,13 +43,13 @@ export default function AdminHeader({
         <button
           onClick={onToggleSidebar}
           type="button"
-          className="lg:hidden p-2 -ml-1 text-slate-700 hover:text-[#00a8e8] hover:bg-slate-100 rounded transition-colors focus:outline-none"
+          className="lg:hidden p-2 -ml-1 text-slate-700 hover:text-[#dc2626] hover:bg-slate-100 rounded transition-colors focus:outline-none"
           aria-label="Open navigation menu"
         >
           <Menu className="w-5 h-5" />
         </button>
 
-        <h2 className="text-sm sm:text-base md:text-lg font-black uppercase tracking-wider text-[#0b3663] truncate">
+        <h2 className="text-sm sm:text-base md:text-lg font-bold uppercase tracking-wider text-[#991b1b] truncate">
           {title}
         </h2>
       </div>
@@ -67,7 +67,7 @@ export default function AdminHeader({
         )}
 
         <div className="flex items-center space-x-2 border-l border-slate-200 pl-2 sm:pl-4">
-          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 border border-slate-300 flex items-center justify-center text-[#0b3663] rounded-xs">
+          <div className="w-7 h-7 sm:w-8 sm:h-8 bg-slate-100 border border-slate-300 flex items-center justify-center text-[#991b1b] rounded-xs">
             <User className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           </div>
           <div className="text-left hidden md:block max-w-[140px] truncate">

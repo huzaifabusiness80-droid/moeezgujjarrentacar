@@ -1,133 +1,79 @@
-"use client";
-
 import Image from "next/image";
-import { Award, Compass, FileCheck2, PlaneTakeoff, HeartHandshake, MessageSquare, PhoneCall, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { CheckCircle2, ArrowRight } from "lucide-react";
 
 export default function AboutSection() {
-  const features = [
-    {
-      icon: <FileCheck2 className="w-5 h-5 text-[#00a8e8] shrink-0" />,
-      title: "Licensed Visa Consultancy",
-      desc: "High approval file preparation for UK, USA, Schengen, UAE, Turkey & worldwide.",
-    },
-    {
-      icon: <PlaneTakeoff className="w-5 h-5 text-[#00a8e8] shrink-0" />,
-      title: "Direct Airline Ticketing",
-      desc: "Instant confirmed seats and exclusive fares across major domestic & global airlines.",
-    },
-    {
-      icon: <Compass className="w-5 h-5 text-[#00a8e8] shrink-0" />,
-      title: "Customized Tour Packages",
-      desc: "Tailor-made itineraries with verified 3 to 5-star hotels and private transfers.",
-    },
-    {
-      icon: <HeartHandshake className="w-5 h-5 text-[#00a8e8] shrink-0" />,
-      title: "Executive Umrah & Hajj",
-      desc: "End-to-end pilgrimage management with hotels near Haramain & fast e-visas.",
-    },
-  ];
-
   return (
-    <section id="about" className="relative py-20 sm:py-28 bg-slate-950 text-white overflow-hidden border-b border-slate-800">
-      {/* Full Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/destinations/dubai.jpg"
-          alt="Fly Sky Travel and Tourism Global Tours"
-          fill
-          sizes="100vw"
-          className="object-cover opacity-30"
-          priority
-        />
-        {/* Dark Gradient Overlay for optimal text and card contrast */}
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/90 to-slate-950/80" />
-      </div>
-
-      <div className="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* 2-Column Split: Left Content & CTAs, Right 4 Feature Boxes */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <section className="py-20 sm:py-28 bg-white border-b border-slate-200">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           
-          {/* Left Column: Heading, Narrative & CTAs */}
-          <div className="lg:col-span-6 space-y-6">
+          <div className="relative w-full h-[400px] sm:h-[500px] lg:h-[600px] group overflow-hidden">
+            <div className="absolute top-0 right-0 w-3/4 h-full bg-slate-100 -z-10 translate-x-4 -translate-y-4"></div>
+            <Image
+              src="/fleet/fortuner-legender.jpg"
+              alt="Moeez Gujjar Rent A Car Fleet"
+              fill
+              className="object-cover rounded-none border border-slate-300 z-10 hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+            />
             
-            {/* Badges */}
-            <div className="flex flex-wrap items-center gap-2.5">
-              <span className="text-xs font-extrabold text-[#00a8e8] uppercase tracking-widest bg-[#00a8e8]/15 px-3 py-1 border border-[#00a8e8]/30">
-                ABOUT US
-              </span>
-              <div className="inline-flex items-center gap-1.5 bg-white/10 text-white px-3 py-1 text-xs font-bold uppercase tracking-wider rounded-none border border-white/20">
-                <Award className="w-3.5 h-3.5 text-[#00a8e8]" />
-                <span>Govt. License # LHR 10981</span>
-              </div>
-            </div>
-            
-            {/* Titles */}
-            <div className="space-y-2">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
-                About Fly Sky Travel &amp; Tourism
-              </h2>
-              <p className="text-sky-300 text-sm sm:text-base font-semibold">
-                Crafting Seamless &amp; Memorable Journeys Across the Globe
-              </p>
-            </div>
-            
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed font-normal">
-              Fly Sky Travel &amp; Tourism is a trusted, full-service licensed travel management agency based in Vehari, Punjab. Dedicated to transparency and excellence, we simplify complex visa documentation, secure the best flight deals, and craft bespoke holiday journeys with complete peace of mind.
-            </p>
-
-            {/* CTAs */}
-            <div className="pt-2 flex flex-wrap items-center gap-3.5">
-              <a
-                href="https://wa.me/923001871622"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3.5 bg-[#e61c24] hover:bg-[#cc141b] text-white font-bold text-xs uppercase tracking-wider rounded-none transition-colors flex items-center gap-2 cursor-pointer shadow-none"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>Chat On WhatsApp</span>
-              </a>
-
-              <a
-                href="tel:03001871622"
-                className="px-6 py-3.5 bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs uppercase tracking-wider rounded-none transition-colors flex items-center gap-2 cursor-pointer shadow-none"
-              >
-                <PhoneCall className="w-4 h-4 text-[#00a8e8]" />
-                <span>Call 0300-1871622</span>
-              </a>
-            </div>
-
-            {/* Office Tag */}
-            <div className="pt-1 flex items-center gap-2 text-xs text-slate-400">
-              <ShieldCheck className="w-4 h-4 text-[#00a8e8]" />
-              <span>Office #1, F-Block, Freed Joyland Road, Vehari, Punjab</span>
+            <div className="absolute bottom-6 left-6 z-20 bg-[#991b1b] text-white p-6 border-l-4 border-[#dc2626] shadow-lg max-w-xs">
+              <span className="block text-3xl font-bold text-[#dc2626]">9+</span>
+              <span className="text-sm font-semibold tracking-wide uppercase mt-1 block">Years of Experience</span>
             </div>
           </div>
 
-          {/* Right Column: 4 Feature Boxes (2x2 Grid) */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {features.map((item, idx) => (
-              <div 
-                key={idx} 
-                className="bg-slate-900/85 backdrop-blur-md border border-slate-700/80 p-5 rounded-none space-y-2.5 hover:border-[#00a8e8] hover:bg-slate-900 transition-all group"
-              >
-                <div className="w-10 h-10 bg-slate-800/90 border border-slate-700 flex items-center justify-center group-hover:bg-[#00a8e8] group-hover:border-[#00a8e8] transition-colors">
-                  <span className="group-hover:text-white transition-colors">
-                    {item.icon}
-                  </span>
+          <div className="space-y-6 sm:space-y-8">
+            <div className="space-y-3">
+              <span className="text-[#dc2626] font-bold text-xs sm:text-sm tracking-widest uppercase">
+                About Moeez Gujjar Rent A Car
+              </span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight leading-[1.15]">
+                Your Trusted Partner for Luxury & Economy Car Rentals
+              </h2>
+            </div>
+
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+              Moeez Gujjar Rent A Car is a premier car rental agency located in Lahore, Punjab. We pride ourselves on offering a wide range of impeccably maintained vehicles, from luxury sedans for weddings to robust SUVs for Northern tours.
+            </p>
+
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#dc2626] shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-slate-900 font-bold text-sm sm:text-base">Meticulously Maintained Fleet</h4>
+                  <p className="text-slate-500 text-xs sm:text-sm mt-1">Every vehicle is fully serviced, clean, and ready for your journey.</p>
                 </div>
-                <h3 className="font-bold text-white text-sm group-hover:text-[#00a8e8] transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-slate-300 text-xs leading-relaxed font-normal">
-                  {item.desc}
-                </p>
               </div>
-            ))}
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#dc2626] shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-slate-900 font-bold text-sm sm:text-base">Professional Chauffeurs</h4>
+                  <p className="text-slate-500 text-xs sm:text-sm mt-1">Experienced and courteous drivers available for all luxury rentals.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#dc2626] shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="text-slate-900 font-bold text-sm sm:text-base">Transparent Pricing</h4>
+                  <p className="text-slate-500 text-xs sm:text-sm mt-1">No hidden charges, offering the best rates in Lahore.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4">
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 hover:bg-[#e61c24] text-white font-bold text-xs uppercase tracking-widest transition-colors duration-300 group rounded-none"
+              >
+                <span>Discover More</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
           </div>
 
         </div>
-
       </div>
     </section>
   );

@@ -44,7 +44,7 @@ export default function AdminShell({
   if (loading) {
     return (
       <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center text-white px-4 text-center">
-        <Loader2 className="w-10 h-10 animate-spin text-[#00a8e8] mb-3" />
+        <Loader2 className="w-10 h-10 animate-spin text-[#dc2626] mb-3" />
         <p className="text-xs uppercase font-mono tracking-widest text-slate-400">
           Verifying Admin Credentials...
         </p>
@@ -57,7 +57,7 @@ export default function AdminShell({
   }
 
   return (
-    <div className="min-h-screen flex bg-slate-100 antialiased selection:bg-[#00a8e8] selection:text-white">
+    <div className="min-h-screen flex bg-slate-100 antialiased selection:bg-[#dc2626] selection:text-white">
       {/* Sidebar with Desktop and Mobile Drawer modes */}
       <AdminSidebar
         mobileOpen={sidebarOpen}

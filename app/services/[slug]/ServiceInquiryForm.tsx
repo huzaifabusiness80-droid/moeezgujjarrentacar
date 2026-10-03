@@ -32,9 +32,9 @@ export default function ServiceInquiryForm({ defaultService }: Props) {
       console.error("Error in inquiry submit:", err);
     }
 
-    const text = `Hello Fly Sky Travel %26 Tourism,%0A%0A*Service Inquiry:* ${encodeURIComponent(defaultService)}%0A- *Name:* ${encodeURIComponent(name)}%0A- *Phone:* ${encodeURIComponent(phone)}%0A- *Destination/City:* ${encodeURIComponent(city)}%0A- *Details:* ${encodeURIComponent(details)}`;
+    const text = `Hello Moeez Gujjar Rent A Car,%0A%0A*Service Inquiry:* ${encodeURIComponent(defaultService)}%0A- *Name:* ${encodeURIComponent(name)}%0A- *Phone:* ${encodeURIComponent(phone)}%0A- *Destination/City:* ${encodeURIComponent(city)}%0A- *Details:* ${encodeURIComponent(details)}`;
     
-    window.open(`https://wa.me/923088171622?text=${text}`, "_blank");
+    window.open(`https://wa.me/923200494141?text=${text}`, "_blank");
     setSubmitted(true);
   };
 
@@ -58,7 +58,7 @@ export default function ServiceInquiryForm({ defaultService }: Props) {
           <button
             type="button"
             onClick={() => setSubmitted(false)}
-            className="text-[11px] text-[#00a8e8] underline font-semibold mt-1"
+            className="text-[11px] text-[#dc2626] underline font-semibold mt-1"
           >
             Submit another query
           </button>
@@ -75,7 +75,7 @@ export default function ServiceInquiryForm({ defaultService }: Props) {
               placeholder="e.g. Muhammad Ali"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#00a8e8] focus:outline-none"
+              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#dc2626] focus:outline-none"
             />
           </div>
 
@@ -89,7 +89,7 @@ export default function ServiceInquiryForm({ defaultService }: Props) {
               placeholder="0300-1234567"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#00a8e8] focus:outline-none"
+              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#dc2626] focus:outline-none"
             />
           </div>
 
@@ -102,7 +102,7 @@ export default function ServiceInquiryForm({ defaultService }: Props) {
               placeholder="e.g. Dubai, UK, Turkey, Makkah"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#00a8e8] focus:outline-none"
+              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#dc2626] focus:outline-none"
             />
           </div>
 
@@ -115,7 +115,7 @@ export default function ServiceInquiryForm({ defaultService }: Props) {
               placeholder="Travel dates, passengers or specific queries..."
               value={details}
               onChange={(e) => setDetails(e.target.value)}
-              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#00a8e8] focus:outline-none resize-none"
+              className="w-full px-3 py-2 bg-white border border-slate-300 rounded-none text-xs text-slate-900 focus:border-[#dc2626] focus:outline-none resize-none"
             />
           </div>
 

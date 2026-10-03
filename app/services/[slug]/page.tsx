@@ -25,6 +25,25 @@ interface PageProps {
 
 export const dynamic = "force-dynamic";
 
+export async function generateMetadata({ params }: PageProps) {
+  const { slug } = await params;
+  let title = "Car Categories";
+  if (slug === "luxury-cars") title = "Luxury Cars for Rent in Lahore";
+  if (slug === "economy-cars") title = "Economy Cars for Rent in Lahore";
+  if (slug === "suv-rentals") title = "SUV & 4x4 for Rent in Lahore";
+
+  return {
+    title: `${title} | Moeez Gujjar Rent A Car`,
+    description: `Rent ${title.toLowerCase()} from Moeez Gujjar Rent A Car. We offer the best rates, well-maintained vehicles, and professional drivers in Lahore.`,
+    keywords: [title, "Rent a car in Lahore", "Best rent a car agency"],
+    openGraph: {
+      title: `${title} | Moeez Gujjar Rent A Car`,
+      description: `Book your ${title.toLowerCase()} today with Moeez Gujjar Rent A Car in Lahore.`,
+      url: `https://moeezgujjarrentacar.com/services/${slug}`,
+    }
+  };
+}
+
 export default async function ServiceCatalogPage({ params }: PageProps) {
   const { slug } = await params;
   let service: any = null;
@@ -63,7 +82,7 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
 
       <main className="flex-1">
         {/* 1. Hero Section (Clean, Bold, Corporate) */}
-        <section className="relative bg-[#0b3663] text-white py-14 sm:py-20 border-b border-slate-200">
+        <section className="relative bg-[#991b1b] text-white py-14 sm:py-20 border-b border-slate-200">
           <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             {/* Breadcrumb Trail */}
             <div className="flex items-center gap-2 text-xs font-semibold text-sky-200 uppercase tracking-wider mb-4">
@@ -75,7 +94,7 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
             </div>
 
             <div className="max-w-3xl space-y-4">
-              <div className="inline-flex items-center gap-2 bg-[#00a8e8] text-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider rounded-none">
+              <div className="inline-flex items-center gap-2 bg-[#dc2626] text-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider rounded-none">
                 <Award className="w-4 h-4" />
                 <span>Govt. License # LHR 10981</span>
               </div>
@@ -91,7 +110,7 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
               {/* Action Buttons */}
               <div className="pt-2 flex flex-wrap items-center gap-3">
                 <a
-                  href={`https://wa.me/923001871622?text=${encodeURIComponent(`Assalam-o-Alaikum Fly Sky Travel! I want to inquire about "${service.title}".`)}`}
+                  href={`https://wa.me/923200494141?text=${encodeURIComponent(`Assalam-o-Alaikum Moeez Gujjar Rent A Car! I want to inquire about "${service.title}".`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-6 py-3 bg-[#e61c24] hover:bg-[#cc141b] text-white font-bold text-xs uppercase tracking-wider rounded-none transition-colors flex items-center gap-2"
@@ -101,11 +120,11 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
                 </a>
 
                 <a
-                  href="tel:03001871622"
+                  href="tel:03200494141"
                   className="px-6 py-3 bg-white hover:bg-slate-100 text-slate-900 font-bold text-xs uppercase tracking-wider rounded-none transition-colors flex items-center gap-2"
                 >
-                  <Phone className="w-4 h-4 text-[#00a8e8]" />
-                  <span>Call 0300-1871622</span>
+                  <Phone className="w-4 h-4 text-[#dc2626]" />
+                  <span>Call 0320-0494141</span>
                 </a>
               </div>
             </div>
@@ -131,7 +150,7 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
               {categorySubServices.map((sub) => (
                 <div 
                   key={sub.slug}
-                  className="bg-white border border-slate-300 rounded-none overflow-hidden flex flex-col justify-between hover:border-[#00a8e8] transition-all group"
+                  className="bg-white border border-slate-300 rounded-none overflow-hidden flex flex-col justify-between hover:border-[#dc2626] transition-all group"
                 >
                   <div>
                     {/* Image with Tag */}
@@ -143,14 +162,14 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <div className="absolute top-3 right-3 bg-[#00a8e8] text-white text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider">
+                      <div className="absolute top-3 right-3 bg-[#dc2626] text-white text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider">
                         {sub.badge}
                       </div>
                     </div>
 
                     {/* Card Content */}
                     <div className="p-6 space-y-3">
-                      <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#00a8e8] transition-colors leading-snug">
+                      <h3 className="text-lg font-bold text-slate-900 group-hover:text-[#dc2626] transition-colors leading-snug">
                         {sub.title}
                       </h3>
                       <p className="text-slate-500 text-xs sm:text-sm leading-relaxed line-clamp-2">
@@ -175,14 +194,14 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
                   <div className="p-6 pt-0 flex items-center gap-2">
                     <Link
                       href={`/services/${slug}/${sub.slug}`}
-                      className="flex-1 py-3 px-4 bg-[#0b3663] hover:bg-[#072545] text-white font-bold text-xs uppercase tracking-wider rounded-none transition-colors flex items-center justify-center gap-2 text-center"
+                      className="flex-1 py-3 px-4 bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-bold text-xs uppercase tracking-wider rounded-none transition-colors flex items-center justify-center gap-2 text-center"
                     >
                       <span>View Full Details</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
 
                     <a
-                      href={`https://wa.me/923001871622?text=${encodeURIComponent(`Assalam-o-Alaikum Fly Sky Travel! I want to inquire about "${sub.title}".`)}`}
+                      href={`https://wa.me/923200494141?text=${encodeURIComponent(`Assalam-o-Alaikum Moeez Gujjar Rent A Car! I want to inquire about "${sub.title}".`)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="py-3 px-3.5 bg-[#e61c24] hover:bg-[#cc141b] text-white font-bold text-xs rounded-none transition-colors flex items-center justify-center"
@@ -205,11 +224,11 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
               Need a Custom Itinerary or Have Specific Inquiries?
             </h4>
             <p className="text-slate-500 text-xs sm:text-sm max-w-xl mx-auto">
-              Our travel consultants in Vehari are available on WhatsApp and call for instant personalized advice.
+              Our travel consultants in Lahore are available on WhatsApp and call for instant personalized advice.
             </p>
             <div className="pt-2 flex justify-center items-center gap-3">
               <a
-                href="https://wa.me/923001871622"
+                href="https://wa.me/923200494141"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-6 py-3 bg-[#e61c24] hover:bg-[#cc141b] text-white font-bold text-xs uppercase tracking-wider rounded-none flex items-center gap-2"
@@ -218,11 +237,11 @@ export default async function ServiceCatalogPage({ params }: PageProps) {
                 <span>WhatsApp Helpline</span>
               </a>
               <a
-                href="tel:03001871622"
-                className="px-6 py-3 bg-[#0b3663] hover:bg-[#072545] text-white font-bold text-xs uppercase tracking-wider rounded-none flex items-center gap-2"
+                href="tel:03200494141"
+                className="px-6 py-3 bg-[#991b1b] hover:bg-[#7f1d1d] text-white font-bold text-xs uppercase tracking-wider rounded-none flex items-center gap-2"
               >
                 <Phone className="w-4 h-4" />
-                <span>Call 0300-1871622</span>
+                <span>Call 0320-0494141</span>
               </a>
             </div>
           </div>

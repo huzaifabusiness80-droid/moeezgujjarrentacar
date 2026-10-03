@@ -85,7 +85,7 @@ export default function CloudinaryUploader({
             onClick={() => setMode("file")}
             className={`px-2 py-0.5 transition-colors ${
               mode === "file"
-                ? "bg-[#0b3663] text-white font-medium"
+                ? "bg-[#991b1b] text-white font-medium"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >
@@ -96,7 +96,7 @@ export default function CloudinaryUploader({
             onClick={() => setMode("url")}
             className={`px-2 py-0.5 transition-colors ${
               mode === "url"
-                ? "bg-[#0b3663] text-white font-medium"
+                ? "bg-[#991b1b] text-white font-medium"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >
@@ -111,8 +111,8 @@ export default function CloudinaryUploader({
           onDrop={handleDrop}
           className={`border-2 border-dashed transition-all p-4 text-center cursor-pointer ${
             uploading
-              ? "border-[#00a8e8] bg-[#00a8e8]/5"
-              : "border-slate-300 hover:border-[#0b3663] bg-slate-50"
+              ? "border-[#dc2626] bg-[#dc2626]/5"
+              : "border-slate-300 hover:border-[#991b1b] bg-slate-50"
           }`}
           onClick={() => !uploading && fileInputRef.current?.click()}
         >
@@ -129,7 +129,7 @@ export default function CloudinaryUploader({
           />
 
           {uploading ? (
-            <div className="flex flex-col items-center justify-center py-4 text-[#00a8e8]">
+            <div className="flex flex-col items-center justify-center py-4 text-[#dc2626]">
               <Loader2 className="w-8 h-8 animate-spin mb-2" />
               <p className="text-xs font-semibold">Uploading to Cloudinary CDN...</p>
             </div>
@@ -155,7 +155,7 @@ export default function CloudinaryUploader({
               onChange(e.target.value);
             }}
             placeholder={placeholder}
-            className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#0b3663] bg-white"
+            className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b] bg-white"
           />
         </div>
       )}

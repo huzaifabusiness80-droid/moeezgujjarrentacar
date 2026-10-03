@@ -1,8 +1,8 @@
 import React from "react";
 
 export const metadata = {
-  title: "Admin Portal | Fly Sky Travel & Tourism",
-  description: "Fly Sky Management & Control Portal",
+  title: "Admin Portal | Moeez Gujjar Rent A Car",
+  description: "Moeez Gujjar Rent A Car Management Portal",
   icons: {
     icon: "/navbarlogo.png",
     shortcut: "/navbarlogo.png",

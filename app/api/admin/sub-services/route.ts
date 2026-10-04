@@ -100,7 +100,7 @@ export async function POST(request: Request) {
         stepsOrItinerary: Array.isArray(body.stepsOrItinerary) ? body.stepsOrItinerary : [],
         faqs: Array.isArray(body.faqs) ? body.faqs : [],
         isFeatured: body.isFeatured !== undefined ? !!body.isFeatured : !!body.featured,
-      },
+      } as any,
     });
 
     // If this is a tour package, sync to Package table as well
@@ -207,7 +207,7 @@ export async function PUT(request: Request) {
 
     const updated = await prisma.subService.update({
       where: { id },
-      data: updateData,
+      data: updateData as any,
     });
 
     // If this is a tour package, sync to Package table

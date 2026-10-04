@@ -83,22 +83,20 @@ export default function CloudinaryUploader({
           <button
             type="button"
             onClick={() => setMode("file")}
-            className={`px-2 py-0.5 transition-colors ${
-              mode === "file"
+            className={`px-2 py-0.5 transition-colors ${mode === "file"
                 ? "bg-[#991b1b] text-white font-medium"
                 : "text-slate-500 hover:text-slate-800"
-            }`}
+              }`}
           >
             Upload File
           </button>
           <button
             type="button"
             onClick={() => setMode("url")}
-            className={`px-2 py-0.5 transition-colors ${
-              mode === "url"
+            className={`px-2 py-0.5 transition-colors ${mode === "url"
                 ? "bg-[#991b1b] text-white font-medium"
                 : "text-slate-500 hover:text-slate-800"
-            }`}
+              }`}
           >
             Direct URL
           </button>
@@ -109,11 +107,10 @@ export default function CloudinaryUploader({
         <div
           onDragOver={(e) => e.preventDefault()}
           onDrop={handleDrop}
-          className={`border-2 border-dashed transition-all p-4 text-center cursor-pointer ${
-            uploading
+          className={`border-2 border-dashed transition-all p-4 text-center cursor-pointer ${uploading
               ? "border-[#dc2626] bg-[#dc2626]/5"
               : "border-slate-300 hover:border-[#991b1b] bg-slate-50"
-          }`}
+            }`}
           onClick={() => !uploading && fileInputRef.current?.click()}
         >
           <input

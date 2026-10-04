@@ -2,6 +2,7 @@ import Header from "./components/Header";
 import HeroCarousel from "./components/HeroCarousel";
 import CarMarquee from "./components/CarMarquee";
 import FeaturedPackages from "./components/FeaturedPackages";
+import PakistanDestinations from "./components/PakistanDestinations";
 import WhyChooseUs from "./components/WhyChooseUs";
 import ServicesSection from "./components/ServicesSection";
 import AboutSection from "./components/AboutSection";
@@ -24,6 +25,9 @@ export default function Home() {
 
         {/* 3. Featured Rental Packages */}
         <FeaturedPackages />
+
+        {/* 3.5 Vertical Showcase of Destinations */}
+        <PakistanDestinations />
 
         {/* 4. Why Choose Us */}
         <WhyChooseUs />

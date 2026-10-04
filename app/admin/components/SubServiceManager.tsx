@@ -48,7 +48,11 @@ export interface SubServiceItem {
   durationOrProcessing: string;
   validity: string;
   stayDuration?: string;
+  capacity?: string;
+  seatingCapacity?: string;
+  seats?: string;
   entryType?: string;
+  driverType?: string;
   overview: string;
   requirements: string[];
   inclusions: string[];
@@ -255,8 +259,11 @@ export default function SubServiceManager({
       priceOrFee: defaults.priceDefault,
       durationOrProcessing: defaults.durationDefault,
       validity: defaults.validityDefault,
-      stayDuration: activeParentSlug === "tour-packages" ? "5 Days / 4 Nights" : "30 Days",
-      entryType: activeParentSlug === "visa-processing" ? "Single / Multiple" : "Standard",
+      stayDuration: activeParentSlug === "suv-rentals" ? "7 Seats" : "4-5 Seats",
+      capacity: activeParentSlug === "suv-rentals" ? "7 Seats" : "4-5 Seats",
+      seatingCapacity: activeParentSlug === "suv-rentals" ? "7 Seats" : "4-5 Seats",
+      entryType: "Both Options Available",
+      driverType: "Both Options Available",
       image: defaults.defaultImage,
       overview: defaults.overviewDefault,
       requirements: [...defaults.defaultReqs],
@@ -278,6 +285,47 @@ export default function SubServiceManager({
     const itemParentSlug = raw.parentSlug || raw.serviceId || (parentSlug !== "ALL" ? parentSlug : "luxury-cars");
     const parentCategoryObj = SERVICE_CATEGORIES.find((c) => c.slug === itemParentSlug);
 
+    // Auto-detect seating capacity from any available field or inclusions/overview if not explicitly saved
+    let detectedCapacity = "";
+    if (raw.stayDuration && !raw.stayDuration.toLowerCase().includes("day") && !raw.stayDuration.toLowerCase().includes("night")) {
+      detectedCapacity = raw.stayDuration;
+    } else if (raw.capacity) {
+      detectedCapacity = raw.capacity;
+    } else if (raw.seatingCapacity) {
+      detectedCapacity = raw.seatingCapacity;
+    } else if (raw.seats) {
+      detectedCapacity = raw.seats;
+    } else if (raw.seating) {
+      detectedCapacity = raw.seating;
+    }
+
+    if (!detectedCapacity) {
+      const allText = `${Array.isArray(raw.inclusions) ? raw.inclusions.join(" ") : ""} ${raw.overview || ""} ${raw.description || ""}`;
+      const seatMatch = allText.match(/(\d+[- ]*(?:Seater|Seats|Passengers|Person))/i);
+      if (seatMatch) {
+        detectedCapacity = seatMatch[1];
+      } else if (itemParentSlug === "suv-rentals") {
+        detectedCapacity = "7 Seats";
+      } else if (itemParentSlug === "luxury-cars") {
+        detectedCapacity = "4-5 Seats";
+      } else if (itemParentSlug === "economy-cars") {
+        detectedCapacity = "5 Seats";
+      } else {
+        detectedCapacity = "4-5 Seats";
+      }
+    }
+
+    let detectedDriver = "";
+    if (raw.entryType && !raw.entryType.toLowerCase().includes("single") && !raw.entryType.toLowerCase().includes("standard")) {
+      detectedDriver = raw.entryType;
+    } else if (raw.driverType) {
+      detectedDriver = raw.driverType;
+    } else if (raw.withDriver) {
+      detectedDriver = raw.withDriver;
+    } else {
+      detectedDriver = "Both Options Available";
+    }
+
     const mapped: Partial<SubServiceItem> = {
       id: raw.id,
       parentSlug: itemParentSlug,
@@ -287,10 +335,14 @@ export default function SubServiceManager({
       subtitle: raw.subtitle || raw.tagline || "",
       badge: raw.badge || "Featured",
       priceOrFee: raw.priceOrFee || (raw.priceStarting ? `PKR ${raw.priceStarting}` : "Call for quote"),
+      priceUsd: raw.priceUsd || "",
       durationOrProcessing: raw.durationOrProcessing || raw.processingTime || "",
       validity: raw.validity || "",
-      stayDuration: raw.stayDuration || "",
-      entryType: raw.entryType || "",
+      stayDuration: detectedCapacity,
+      capacity: detectedCapacity,
+      seatingCapacity: detectedCapacity,
+      entryType: detectedDriver,
+      driverType: detectedDriver,
       image: raw.image || "/destinations/dubai.jpg",
       overview: raw.overview || raw.description || "",
       requirements: Array.isArray(raw.requirements) ? raw.requirements : [],
@@ -379,8 +431,16 @@ export default function SubServiceManager({
     setSaving(true);
     setError(null);
 
+    const capacityVal = editingItem.stayDuration || editingItem.capacity || editingItem.seatingCapacity || "";
+    const driverVal = editingItem.entryType || (editingItem as any).driverType || "";
+
     const payload = {
       ...editingItem,
+      stayDuration: capacityVal,
+      capacity: capacityVal,
+      seatingCapacity: capacityVal,
+      entryType: driverVal,
+      driverType: driverVal,
       name: editingItem.title,
       requirements: reqsStr.split("\n").map((s) => s.trim()).filter(Boolean),
       inclusions: inclusionsStr.split("\n").map((s) => s.trim()).filter(Boolean),
@@ -878,9 +938,14 @@ export default function SubServiceManager({
                     </label>
                     <input
                       type="text"
-                      value={editingItem.stayDuration || ""}
+                      value={editingItem.stayDuration ?? editingItem.capacity ?? editingItem.seatingCapacity ?? ""}
                       onChange={(e) =>
-                        setEditingItem({ ...editingItem, stayDuration: e.target.value })
+                        setEditingItem({
+                          ...editingItem,
+                          stayDuration: e.target.value,
+                          capacity: e.target.value,
+                          seatingCapacity: e.target.value,
+                        })
                       }
                       className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
                       placeholder="e.g. 4 Seats, 7 Seats"
@@ -893,9 +958,13 @@ export default function SubServiceManager({
                     </label>
                     <input
                       type="text"
-                      value={editingItem.entryType || ""}
+                      value={editingItem.entryType ?? (editingItem as any).driverType ?? ""}
                       onChange={(e) =>
-                        setEditingItem({ ...editingItem, entryType: e.target.value })
+                        setEditingItem({
+                          ...editingItem,
+                          entryType: e.target.value,
+                          driverType: e.target.value,
+                        })
                       }
                       className="w-full text-xs px-3 py-2 border border-slate-300 focus:outline-none focus:border-[#991b1b]"
                       placeholder="e.g. Both Options Available"

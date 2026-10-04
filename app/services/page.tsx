@@ -73,6 +73,7 @@ export default async function ServicesIndexPage() {
                         src={car.image}
                         alt={car.title}
                         fill
+                        unoptimized={car.image?.startsWith("http")}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />

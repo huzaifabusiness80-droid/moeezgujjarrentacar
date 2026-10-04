@@ -18,23 +18,33 @@ export async function GET(request: Request) {
     });
 
     // Format for both admin UI and general consumer
-    const formatted = subServices.map((item : any) => ({
-      ...item,
-      name: item.title,
-      description: item.overview,
-      priceStarting: item.priceOrFee,
-      priceUsd: item.priceUsd,
-      currency: "PKR",
-      processingTime: item.durationOrProcessing,
-      includes: item.inclusions,
-      featured: item.isFeatured,
-      serviceId: item.parentSlug,
-      service: {
-        id: item.parentSlug,
-        name: item.parentTitle,
-        slug: item.parentSlug,
-      },
-    }));
+    const formatted = subServices.map((item : any) => {
+      const capacity = item.stayDuration || item.capacity || item.seatingCapacity || "";
+      const driverType = item.entryType || item.driverType || "";
+
+      return {
+        ...item,
+        stayDuration: capacity,
+        capacity: capacity,
+        seatingCapacity: capacity,
+        entryType: driverType,
+        driverType: driverType,
+        name: item.title,
+        description: item.overview,
+        priceStarting: item.priceOrFee,
+        priceUsd: item.priceUsd,
+        currency: "PKR",
+        processingTime: item.durationOrProcessing,
+        includes: item.inclusions,
+        featured: item.isFeatured,
+        serviceId: item.parentSlug,
+        service: {
+          id: item.parentSlug,
+          name: item.parentTitle,
+          slug: item.parentSlug,
+        },
+      };
+    });
 
     return NextResponse.json({ success: true, data: formatted });
   } catch (error: any) {
@@ -82,6 +92,8 @@ export async function POST(request: Request) {
         priceUsd: body.priceUsd || null,
         durationOrProcessing: body.durationOrProcessing || body.processingTime || "3-5 Working Days",
         validity: body.validity || "30 Days",
+        stayDuration: body.stayDuration || body.capacity || body.seatingCapacity || body.seats || null,
+        entryType: body.entryType || body.driverType || body.withDriver || null,
         overview: body.overview || body.description || "",
         requirements: Array.isArray(body.requirements) ? body.requirements : [],
         inclusions: Array.isArray(body.inclusions) ? body.inclusions : Array.isArray(body.includes) ? body.includes : [],
@@ -178,6 +190,10 @@ export async function PUT(request: Request) {
       updateData.durationOrProcessing = body.durationOrProcessing || body.processingTime || "";
     }
     if (body.validity !== undefined) updateData.validity = body.validity;
+    const capacityInput = body.stayDuration !== undefined ? body.stayDuration : (body.capacity !== undefined ? body.capacity : body.seatingCapacity !== undefined ? body.seatingCapacity : body.seats);
+    if (capacityInput !== undefined) updateData.stayDuration = capacityInput;
+    const driverInput = body.entryType !== undefined ? body.entryType : (body.driverType !== undefined ? body.driverType : body.withDriver);
+    if (driverInput !== undefined) updateData.entryType = driverInput;
     if (body.overview !== undefined || body.description !== undefined) {
       updateData.overview = body.overview || body.description || "";
     }

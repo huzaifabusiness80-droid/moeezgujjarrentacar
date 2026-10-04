@@ -62,6 +62,7 @@ export default function FeaturedPackages() {
                   src={car.image || "/fleet/mercedes-s-class.jpg"}
                   alt={car.title}
                   fill
+                  unoptimized={Boolean(car.image?.startsWith("http"))}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500 ease-out"
                 />

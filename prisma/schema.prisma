@@ -44,6 +44,8 @@ model SubService {
   priceUsd             String?
   durationOrProcessing String
   validity             String
+  stayDuration         String?
+  entryType            String?
   overview             String
   requirements         String[]
   inclusions           String[]

@@ -195,6 +195,7 @@ export default async function SubServiceDetailPage({ params }: PageProps) {
                     alt={subService.title}
                     fill
                     priority
+                    unoptimized={subService.image?.startsWith("http")}
                     sizes="(max-width: 1024px) 100vw, 66vw"
                     className="object-cover"
                   />

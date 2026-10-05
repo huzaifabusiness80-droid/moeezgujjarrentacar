@@ -63,6 +63,11 @@ export default function AdminSidebar({
       href: "/admin/sub-services",
       icon: Layers,
     },
+    {
+      title: "Tour Packages",
+      href: "/admin/packages",
+      icon: Plane,
+    },
   ];
 
   const sidebarContent = (

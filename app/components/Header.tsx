@@ -13,6 +13,7 @@ export default function Header() {
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Our Fleet", href: "/services" },
+    { name: "Tour Packages", href: "/services/tour-packages" },
     { name: "Luxury Cars", href: "/services/luxury-cars" },
     { name: "SUV Rentals", href: "/services/suv-rentals" },
     { name: "Economy Cars", href: "/services/economy-cars" },
@@ -84,18 +85,17 @@ export default function Header() {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-7">
             {navLinks.map((link) => {
               const active = isLinkActive(link.href);
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-[15px] font-semibold transition-colors py-1 ${
-                    active
+                  className={`text-[13px] xl:text-[14px] 2xl:text-[15px] font-semibold transition-colors py-1 ${active
                       ? "text-[#e61c24] border-b-2 border-[#e61c24]"
                       : "text-slate-800 hover:text-[#dc2626] border-b-2 border-transparent"
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -148,11 +148,10 @@ export default function Header() {
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block px-3 py-2 text-base font-semibold rounded-none transition-colors ${
-                    active
+                  className={`block px-3 py-2 text-base font-semibold rounded-none transition-colors ${active
                       ? "bg-red-50 text-[#e61c24] border-l-4 border-[#e61c24]"
                       : "text-slate-800 hover:bg-slate-50 hover:text-[#dc2626]"
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </Link>

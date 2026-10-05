@@ -45,15 +45,23 @@ export async function POST(req: Request) {
       data: {
         slug,
         title,
+        subtitle: data.subtitle || "",
+        badge: data.badge || (isSale ? "Featured" : ""),
         category,
         duration,
         price,
+        priceUsd: data.priceUsd || null,
         originalPrice: data.originalPrice || null,
         imageSrc,
         rating: Number(data.rating) || 5,
         reviewsCount: Number(data.reviewsCount) || 20,
         isSale,
         link: data.link || `/services/tour-packages/${slug}`,
+        overview: data.overview || "",
+        inclusions: data.inclusions || [],
+        requirements: data.requirements || [],
+        itinerary: data.itinerary || [],
+        faqs: data.faqs || [],
         order: Number(data.order) || 0,
       },
     });
@@ -80,6 +88,8 @@ export async function PUT(req: Request) {
 
     const updateData: any = {};
     if (title) updateData.title = title;
+    if (data.subtitle !== undefined) updateData.subtitle = data.subtitle;
+    if (data.badge !== undefined) updateData.badge = data.badge;
     if (data.slug) updateData.slug = data.slug.toLowerCase().replace(/[^a-z0-9]+/g, "-");
     if (category) updateData.category = category;
     if (data.duration) updateData.duration = data.duration;
@@ -90,6 +100,12 @@ export async function PUT(req: Request) {
     if (data.reviewsCount !== undefined) updateData.reviewsCount = Number(data.reviewsCount);
     if (isSale !== undefined) updateData.isSale = isSale;
     if (data.link) updateData.link = data.link;
+    if (data.priceUsd !== undefined) updateData.priceUsd = data.priceUsd;
+    if (data.overview !== undefined) updateData.overview = data.overview;
+    if (data.inclusions !== undefined) updateData.inclusions = data.inclusions;
+    if (data.requirements !== undefined) updateData.requirements = data.requirements;
+    if (data.itinerary !== undefined) updateData.itinerary = data.itinerary;
+    if (data.faqs !== undefined) updateData.faqs = data.faqs;
     if (data.order !== undefined) updateData.order = Number(data.order);
 
     const updated = await prisma.package.update({
